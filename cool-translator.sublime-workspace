@@ -1,0 +1,712 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-style: "
+			],
+			[
+				"bo",
+				"border-radius: "
+			],
+			[
+				"paddin",
+				"padding-left: "
+			],
+			[
+				"ba",
+				"background: "
+			],
+			[
+				"pad",
+				"padding: "
+			],
+			[
+				"mar",
+				"margin: "
+			],
+			[
+				"bor",
+				"border-right: "
+			],
+			[
+				"bord",
+				"border-left: "
+			],
+			[
+				"pa",
+				"padding-left: "
+			],
+			[
+				"padd",
+				"padding: "
+			],
+			[
+				"te",
+				"text-align: "
+			],
+			[
+				"min",
+				"min-width: "
+			],
+			[
+				"РОС",
+				"РОССИИ"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
+				"ti",
+				"timeline"
+			],
+			[
+				"ne",
+				"nextPlaylist"
+			],
+			[
+				"y",
+				"youtubeId"
+			],
+			[
+				"vid",
+				"video"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"cite",
+				"citesHistory"
+			],
+			[
+				"ma",
+				"margin-top: "
+			],
+			[
+				"fon",
+				"font-size: "
+			],
+			[
+				"me",
+				"medicalTaxYear"
+			],
+			[
+				"sa",
+				"salaryNet"
+			],
+			[
+				"fo",
+				"font-size: "
+			],
+			[
+				"borde",
+				"border-bottom: "
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"sal",
+				"salaryGross"
+			],
+			[
+				"salary",
+				"salaryGross"
+			],
+			[
+				"sala",
+				"salaryGross"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"marg",
+				"margin-left: "
+			],
+			[
+				"video",
+				"videoRange"
+			],
+			[
+				"new",
+				"newVideoRangeId"
+			],
+			[
+				"the",
+				"then"
+			],
+			[
+				"ready",
+				"readyToPlay"
+			],
+			[
+				"play",
+				"Player"
+			],
+			[
+				"start",
+				"startPlaying"
+			],
+			[
+				"hid",
+				"hide"
+			],
+			[
+				"hide",
+				"hidePreviewOverlay"
+			],
+			[
+				"show",
+				"showDescription"
+			],
+			[
+				"tra",
+				"transition: "
+			],
+			[
+				"ol",
+				"oldPosition"
+			],
+			[
+				"bak",
+				"background-color: "
+			],
+			[
+				"on",
+				"onPlayerReady"
+			],
+			[
+				"sho",
+				"showLoader"
+			],
+			[
+				"set",
+				"setVideoRange"
+			],
+			[
+				"pla",
+				"player"
+			],
+			[
+				"cle",
+				"clearVideoTimer"
+			],
+			[
+				"time",
+				"timerId"
+			],
+			[
+				"setne",
+				"setNextPlayList"
+			],
+			[
+				"em",
+				"Ember"
+			],
+			[
+				"vide",
+				"videoRange"
+			],
+			[
+				"lo",
+				"loadVideoToPlayer"
+			],
+			[
+				"vi",
+				"videoRangeIndex"
+			],
+			[
+				"nex",
+				"nextVideoRangeIndex"
+			],
+			[
+				"tim",
+				"timerId"
+			],
+			[
+				"impo",
+				"important"
+			],
+			[
+				"pl",
+				"player"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"onSli",
+				"onSlide"
+			],
+			[
+				"minutes",
+				"minutes-string"
+			],
+			[
+				"мин",
+				"минута"
+			],
+			[
+				"t",
+				"text"
+			],
+			[
+				"tot",
+				"totalSeconds"
+			],
+			[
+				"channe",
+				"channel"
+			],
+			[
+				"flex-",
+				"flex-direction: "
+			],
+			[
+				"ali",
+				"align-items: "
+			],
+			[
+				"bac",
+				"background-color: "
+			],
+			[
+				"setVideo",
+				"setVideoRange"
+			],
+			[
+				"get",
+				"getNextVideo"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"l",
+				"list-style-type"
+			],
+			[
+				"visi",
+				"visitor_phone"
+			],
+			[
+				"vis",
+				"visitor_name"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/styles/common.sass",
+			"settings":
+			{
+				"buffer_size": 5248,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			],
+			[
+				"installp",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Mac/dev/cool-translator/src/js/services/linguee/styles.sass",
+		"/Users/Mac/dev/cool-translator/src/js/services/ll/styles.sass",
+		"/Users/Mac/dev/cool-translator/webpack.config.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/add-translation.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/language-selector.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/login-form.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/notification-popup.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/select-book.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/source-tab.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/source.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/translation-dialog.js",
+		"/Users/Mac/dev/cool-translator/src/js/services/abby/styles.sass",
+		"/Users/Mac/dev/cool-translator/src/js/content/index.js",
+		"/Users/Mac/dev/cool-translator/src/js/popup/de/index.js",
+		"/Users/Mac/dev/cool-translator/src/js/popup/login/index.js",
+		"/Users/Mac/dev/cool-translator/src/styles/add-translation.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/language-selector.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/login-form.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/notification-popup.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/popup.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/select-book.scss",
+		"/Users/Mac/dev/cool-translator/src/styles/translation-dialog.scss",
+		"/Users/Mac/dev/cool-translator/src/js/services/abby/styles.scss",
+		"/Users/Mac/dev/cool-translator/package.json",
+		"/Users/Mac/dev/coolvocabulary/CoolVocabulary/Scripts/cool-translator/webpack.config.js",
+		"/Users/Mac/dev/coolvocabulary/CoolVocabulary/Scripts/cool-translator/package.json",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/components/video-collection.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/styles/app.scss",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/application.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/time.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/index.html",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/controllers/index.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/time/playlist.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/time/playlist.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/controllers/time/playlist.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/time.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/index.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/index.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/application.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/components/video-collection.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/components/typing-effect.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/services/video-navigator.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/controllers/time.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/time/index.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/router.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/time.index.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/time/playlist-videos.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/time/playlist-summary.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/components/playlist-summary",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/components/typing-effect.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/components/running-text.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/components/running-text.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/components/.gitkeep",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/cite.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/services/cites-history.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/public/CNAME",
+		"/Users/Mac/dev/myincometax/public/CNAME",
+		"/Users/Mac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/video-range.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/channel.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/helpers/minutes-string.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/playlist.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/video.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/ember-cli-build.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/styles/app.sсss",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/styles/app.sass",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/models/range.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/services/video-history.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/now.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/styles/app.css",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/routes/now.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/initializers/component-router-injector.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/serializers/application.js",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/history.hbs",
+		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/templates/future.hbs",
+		"/Users/Mac/dev/nightwatch-data-driven/package.json",
+		"/Users/Mac/dev/nightwatch-data-driven/index.js",
+		"/Users/Mac/dev/Omni-Tests/package.json",
+		"/index.js",
+		"/Users/Mac/dev/order.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"detectedLanguages",
+			"_filterSupportedLanguages",
+			"arrow-left",
+			"startPlaying",
+			"autoplayAllowed",
+			"wrapper",
+			"startPlaying",
+			"readyToPlay",
+			"startPlaying",
+			"infinite",
+			"startpla",
+			"arrow-left",
+			"arrow-right",
+			"hidePreviewOverlay",
+			"contentContainer",
+			"navbar-br",
+			"navbar-brand",
+			".navbar-brand",
+			"readyToPlay",
+			"startPlaying",
+			"playerOverlay",
+			"landm",
+			"landmark",
+			"getNextPlaylist",
+			"description",
+			"ml12",
+			"letter",
+			"clearVideoTimer",
+			"stopPlaying",
+			"row",
+			"focused",
+			"444",
+			"content",
+			"init",
+			"playlists",
+			"stopPlaying",
+			"setNextPlayList",
+			"videoHistory",
+			"videoNavigator",
+			"getNextPlaylist",
+			"setNextPlayList",
+			"setPlaylist",
+			"loaderContainer",
+			"loade",
+			"showLoader",
+			"load",
+			"videoContainer",
+			"containingBlock",
+			"initPlayer",
+			"initPlayerPromise",
+			"города",
+			"город",
+			"playlist",
+			"store",
+			"route",
+			"gordon_berezovsky_2007_2",
+			"readyToPlay",
+			"votsarenie",
+			"politkovskaya_putin_war",
+			"flex",
+			"this",
+			"salary",
+			"hasOutput",
+			"salary",
+			"-light-color",
+			"font-light-color\n",
+			"8899A6",
+			"links-color",
+			"4AB3F4",
+			"font-light",
+			"555",
+			"box-shadow",
+			"transition",
+			"margin-top",
+			"text-align",
+			"label",
+			"));\n",
+			"right",
+			"stopCurrentVideo",
+			"content",
+			"loadVideoToPlayer",
+			"load",
+			"stopCurrentVideo",
+			"showResumeButton",
+			"font-fa",
+			"transform",
+			"transition",
+			"stopCurrentVideo",
+			"setNextVideoRange",
+			"            \n",
+			"resume-video",
+			"progre",
+			"stopCurrentVideo",
+			"setVideoRange",
+			"setPlaylist",
+			"playlist",
+			"setPlaylist",
+			"videoRangeIndex",
+			"setVideoRange",
+			"updateCarouselArrows",
+			"setPlaylist",
+			"videoRangeIndex",
+			"67",
+			"fillQueue",
+			"onPlayerReady",
+			"summary",
+			"font-family",
+			"summary",
+			"setVideo",
+			"getNextVideo",
+			"getNextPlaylist",
+			"description",
+			"videoNavigator",
+			"store",
+			"summary",
+			"family",
+			"Container",
+			"content",
+			";\n",
+			"videoDesctiption",
+			">\n",
+			"source",
+			"buffer",
+			"sendAdminEmail",
+			"\n        ",
+			"form"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/styles/common.sass",
+					"settings":
+					{
+						"buffer_size": 5248,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								809,
+								809
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 232.0,
+	"status_bar_visible": true
+}

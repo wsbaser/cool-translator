@@ -1,0 +1,48 @@
+{
+  "author": "wsbaser",
+  "manifest_version": 2,
+  "name": "Cool Translator",
+  "version": "1.0.27",
+  "description": "7 languages, 6 supported translation services. Translate words, add words to vocabulary, memorize words at coolvocabulary.com.",
+  "content_security_policy": "script-src 'self' ; object-src 'self'",
+   "icons": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+   },
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "content_scripts": [{
+    "all_frames": false,
+    "js": [
+      "assets/common.js",
+      "assets/content.js"
+      ],
+    "css": [
+      "assets/content.css"
+    ],
+    "matches": [ "<all_urls>" ],
+    "run_at": "document_end"
+  }],
+  "permissions": ["tabs", "<all_urls>"],
+  "web_accessible_resources": [
+    "assets/images/linguee/sprites14.png", 
+    "assets/images/ll/sound.png",
+    "assets/images/ll/marker.png",
+    "assets/images/ll/blank.gif",
+    "assets/images/abby/icons.png",
+    "assets/images/bg.png",
+    "assets/images/icon16.png",
+    "assets/images/add.png",
+    "assets/images/flags.png",
+    "assets/images/sprites.png"],
+  "externally_connectable": {
+    "matches": [ "http://localhost:13189/*", "http://localhost/*", "http://coolvocabulary.com/*" ]
+  },
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+    "default_popup": "popup_login.html"
+  }
+}
