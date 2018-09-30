@@ -55,7 +55,7 @@ export default class DEPopup{
         let langCardEl = $(LANG_CARD_TEMPLATE);
         langCardEl.find('.ctr-flag-icon').addClass(language);
         langCardEl.find('.ctr-lang-name').text(languageData.languageName);
-        let siteOrigin = NODE_ENV=='development'? 'http://localhost:13189/' : 'http://coolvocabulary.com/';
+        let siteOrigin = process.env.NODE_ENV=='development'? 'http://localhost:13189/' : 'http://coolvocabulary.com/';
         let langDELink = siteOrigin + '#/' + language;
         langCardEl.find('.ctr-DE-link').attr('href', langDELink);
         if (languageData.DENotCompleted) {

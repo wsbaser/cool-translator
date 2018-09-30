@@ -1,6 +1,6 @@
 'use strict';
 
-let siteOrigin = NODE_ENV == 'development'?
+let siteOrigin = process.env.NODE_ENV == 'development'?
         'http://localhost:13189':
         'http://coolvocabulary.com';
 

@@ -1,10 +1,16 @@
+const webpack = require('webpack');
+
 const path = require('path');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-let EXTENSION_ID = process.env.NODE_ENV=='development' ? 'ppgnibapoaghkefnghplaanppljbhboo':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
+let EXTENSION_ID = 'gnhjbflmopbjjpiebbeiafgeekpmlofn'; //process.env.NODE_ENV=='development' ? 'gnhjbflmopbjjpiebbeiafgeekpmlofn':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
+
+console.log('NODE_ENV: ' + process.env.NODE_ENV);
+console.log('EXTENSION_ID: '+ EXTENSION_ID);
 
 module.exports = {
+  mode: 'development',
   context: path.resolve(__dirname, "./src"),
   entry: {
     background: "./js/background",
@@ -58,7 +64,11 @@ module.exports = {
       // both options are optional
       filename: "[name].css",
       chunkFilename: "[id].css"
+    }),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
     })
   ]
-
 };

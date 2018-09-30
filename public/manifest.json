@@ -4,7 +4,7 @@
   "name": "Cool Translator",
   "version": "1.0.27",
   "description": "7 languages, 6 supported translation services. Translate words, add words to vocabulary, memorize words at coolvocabulary.com.",
-  "content_security_policy": "script-src 'self' ; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -17,12 +17,9 @@
   "content_scripts": [{
     "all_frames": false,
     "js": [
-      "assets/common.js",
       "assets/content.js"
       ],
-    "css": [
-      "assets/content.css"
-    ],
+    "css": [],
     "matches": [ "<all_urls>" ],
     "run_at": "document_end"
   }],
