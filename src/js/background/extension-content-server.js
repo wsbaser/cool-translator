@@ -18,7 +18,7 @@ export default class ExtensionContentServer{
         return langPair ||
             {
                 sourceLang: chrome.i18n.getUILanguage()==='en'?'es':'en',
-                targetLang: chrome.i18n.getUILanguage()
+                targetLang: 'ru'//chrome.i18n.getUILanguage()
             };
     }
 

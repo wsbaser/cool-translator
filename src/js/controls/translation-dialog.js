@@ -236,7 +236,7 @@ export default class TranslationDialog {
         // . sourceLang and targetLang are WRONG
         if(languages.length===1){
           // . sourceLang is NOT AMBIGUOUS
-          var langPair = this.createLangPair(languages[0], window.navigator.language);
+          var langPair = this.createLangPair(languages[0], 'ru'); //window.navigator.language);
           this.setLangPair(langPair);
           return true;
         }
