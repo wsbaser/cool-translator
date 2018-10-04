@@ -2,7 +2,7 @@
   "author": "wsbaser",
   "manifest_version": 2,
   "name": "Cool Translator",
-  "version": "1.0.27",
+  "version": "1.0.31",
   "description": "7 languages, 6 supported translation services. Translate words, add words to vocabulary, memorize words at coolvocabulary.com.",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "icons": {
@@ -17,7 +17,7 @@
   "content_scripts": [{
     "all_frames": false,
     "js": [
-      "assets/content.js"
+      "assets/injectcontentiframe.js"
       ],
     "css": [],
     "matches": [ "<all_urls>" ],
@@ -25,6 +25,8 @@
   }],
   "permissions": ["tabs", "<all_urls>"],
   "web_accessible_resources": [
+    "assets/content.js", 
+    "content_iframe.html", 
     "assets/images/linguee/sprites14.png", 
     "assets/images/ll/sound.png",
     "assets/images/ll/marker.png",

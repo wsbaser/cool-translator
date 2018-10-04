@@ -4,7 +4,7 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-let EXTENSION_ID = 'gnhjbflmopbjjpiebbeiafgeekpmlofn'; //process.env.NODE_ENV=='development' ? 'gnhjbflmopbjjpiebbeiafgeekpmlofn':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
+let EXTENSION_ID = 'hppnppiichjojpkkkakmbdhnoabhmdji'; //process.env.NODE_ENV=='development' ? 'gnhjbflmopbjjpiebbeiafgeekpmlofn':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
 
 console.log('NODE_ENV: ' + process.env.NODE_ENV);
 console.log('EXTENSION_ID: '+ EXTENSION_ID);
@@ -16,6 +16,7 @@ module.exports = {
   entry: {
     background: "./js/background",
     content: "./js/content",
+    injectcontentiframe: "./js/content/inject_content_iframe",
     popupde: "./js/popup/de",    
     popuplogin: "./js/popup/login"
   },
@@ -65,6 +66,9 @@ module.exports = {
       // both options are optional
       filename: "[name].css",
       chunkFilename: "[id].css"
+    }),
+    new webpack.DefinePlugin({
+      EXTENSION_ID: JSON.stringify(EXTENSION_ID)
     }),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.ProvidePlugin({
