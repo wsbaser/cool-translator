@@ -13,7 +13,6 @@ import Reactor from 'reactor';
 import SelectionHelper from 'selection-helper';
 import StringHelper from 'string-helper';
 
-const LANG_PAIR_CHANGED = 'langPairChanged';
 const ACTIVE_CLASS = 'ctr-active';
 
 const TEMPLATE =
@@ -72,7 +71,8 @@ export default class TranslationDialog {
     this.isActive = false;
 
     this.reactor = new Reactor();
-    this.reactor.registerEvent(LANG_PAIR_CHANGED);
+    this.reactor.registerEvent(TranslationDialog.LANG_PAIR_CHANGED);
+    this.reactor.registerEvent(TranslationDialog.ON_HIDDEN);
 
     this.vocabulary.addEventListener(Vocabulary.CHECK_AUTH_END, this._onCheckAuthEnd.bind(this));
     function bindAddTranslationEvents(tab){
@@ -87,6 +87,17 @@ export default class TranslationDialog {
       this.allSources[id].tabs.forEach(bindAddTranslationEvents);
     }
   }
+  //***** STATIC ****************************************************************************************************
+
+  static get LANG_PAIR_CHANGED(){
+      return 'langPairChanged';
+  }
+
+  static get ON_HIDDEN(){
+      return 'onhide';
+  }
+
+  //*****************************************************************************************************************
   
   _onCheckAuthEnd(){
     if(this.vocabulary.user){
@@ -326,7 +337,7 @@ export default class TranslationDialog {
     if (this.langPair) {
       this.setLangPair(this.langPair);
     }
-    $(window).on('resize', this.hide.bind(this));
+    //$(window).on('resize', this.hide.bind(this));
     document.addEventListener('mousedown', this._onMouseDown.bind(this));
   }
 
@@ -352,7 +363,7 @@ export default class TranslationDialog {
         self.activateSourceWithActiveLink();
         self._updateSourcesContent();
         self._setLangDirection();
-        self.reactor.dispatchEvent(LANG_PAIR_CHANGED, self.getLangPair());
+        self.reactor.dispatchEvent(TranslationDialog.LANG_PAIR_CHANGED, self.getLangPair());
       },
       onLoseFocus: self.focusInput.bind(self)
     };
@@ -384,6 +395,7 @@ export default class TranslationDialog {
       this.hideSelectBook();
       this.el.removeClass('ctr-show');
       this.el.addClass('ctr-hide');
+
       if (this.selectionBackup) {
         var word = this.inputEl.val();
         setTimeout(function(){
@@ -400,6 +412,10 @@ export default class TranslationDialog {
         source.clear();
       });
       this.isActive = false;
+      setTimeout(function(){
+        self.reactor.dispatchEvent(TranslationDialog.ON_HIDDEN);
+      }, 300);
+
       return true;
     }
     return false;
@@ -575,8 +591,13 @@ export default class TranslationDialog {
 
 
   addLangPairChangedListener(callback) {
-    this.reactor.addEventListener(LANG_PAIR_CHANGED, callback);
+    this.reactor.addEventListener(TranslationDialog.LANG_PAIR_CHANGED, callback);
   }
+
+  addOnHiddenListener(callback) {
+    this.reactor.addEventListener(TranslationDialog.ON_HIDDEN, callback);
+  }
+
 
   activateSourceWithActiveLink() {
     this._activateSource(this.sourceWithActiveLink);

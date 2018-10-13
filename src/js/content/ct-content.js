@@ -2,8 +2,6 @@
 
 import MessageTypes from '../message-types';
 import ServiceProvider from './service-provider';
-import SelectionHelper from 'selection-helper';
-import StringHelper from 'string-helper'; 
 
 export default class CTContent {
     constructor() {
@@ -20,8 +18,15 @@ export default class CTContent {
             self.dialog.setLangPair(data.langPair);
             self.dialog.addLangPairChangedListener(self._onLangPairChanged.bind(self));
         });
+        this.dialog.addOnHiddenListener(this._onDialogHidden);
         this._listenBackground();
         this._bindEventHandlers();
+    }
+
+    _onDialogHidden(){
+        window.top.postMessage({ 
+            type: "DIALOG_HIDDEN"
+        }, "*");
     }
 
     _listenBackground() {
@@ -58,50 +63,23 @@ export default class CTContent {
         }, callback);
     }
 
-    _getSelectedText(inputElement) {
-        let text;
-        if (inputElement) {
-            text = inputElement.type === 'checkbox' ?
-                '' :
-                inputElement.value.substring(inputElement.selectionStart, inputElement.selectionEnd);
-        } else {
-            text = SelectionHelper.getSelection().toString();
-        }
-        return StringHelper.trimText(text);
-    }
-
-    _showDialogForCurrentSelection(inputElement, force) {
-        if (inputElement && inputElement.getAttribute && inputElement.getAttribute('type') === 'password')
-            return;
-        let word = this._getSelectedText(inputElement);
-        if (/^\D+$/g.test(word) && word.split(' ').length <= 3) {
-            this.dialog.showForExtension(word);
-        } else if (force) {
-            this.dialog.showForExtension();
-        }
-    };
-
     _bindEventHandlers() {
-        document.addEventListener('dblclick', this.dblClick.bind(this));
+        window.addEventListener("message", function(event) {
+          // We only accept messages from the top window containing our iframe
+          if (event.source != window.top)
+            return;
+
+          if (event.data.type && (event.data.type == "SHOW_DIALOG")) {
+            this.dialog.showForExtension(event.data.text);
+            this._showDialogForCurrentSelection(null, true);
+          }
+        }.bind(this), false);
+
         document.addEventListener('keydown', this.keyDown.bind(this), true);
         document.addEventListener('keyup', this.keyUp.bind(this));
     }
 
     //***** HANDLERS *******************************************************************************************************
-
-    dblClick(event) {
-        if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
-            // . do not show dialog if any command key pressed
-            return;
-        }
-        let inputElement = null;
-        if (typeof event.target.tagName !== 'undefined' &&
-            (event.target.tagName.toLowerCase() === 'input' || event.target.tagName.toLowerCase() === 'textarea')) {
-            inputElement = event.target;
-        }
-        this._showDialogForCurrentSelection(inputElement);
-        return false;
-    }
 
     keyUp(e) {
         if (!this.dialog || !this.dialog.isActive)
@@ -173,17 +151,19 @@ export default class CTContent {
                 this.dialog.focusInput();
                 return cancelEvent(e);
             }
-        } else {
-            // this.dialog is Hidden
-            if (isCommandKeyPressed && e.keyCode === 32) { // Ctrl + Space
-                if (this.dataFromSite &&
-                    $(this.dataFromSite.attachBlockSelector).length)
-                    this.showDialogForSite();
-                else
-                    this._showDialogForCurrentSelection(null, true);
-                return cancelEvent(e);
-            }
         }
+
+        // else {
+        //     // this.dialog is Hidden
+        //     if (isCommandKeyPressed && e.keyCode === 32) { // Ctrl + Space
+        //         if (this.dataFromSite &&
+        //             $(this.dataFromSite.attachBlockSelector).length)
+        //             this.showDialogForSite();
+        //         else
+        //             this._showDialogForCurrentSelection(null, true);
+        //         return cancelEvent(e);
+        //     }
+        // }
     }
 
     //***** PUBLIC ********************************************************************************************************

@@ -312,11 +312,11 @@
 	"buffers":
 	[
 		{
-			"file": "src/styles/common.sass",
+			"file": "src/js/content/ct-content.js",
 			"settings":
 			{
-				"buffer_size": 5245,
-				"line_ending": "Windows"
+				"buffer_size": 7976,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -376,21 +376,32 @@
 	},
 	"file_history":
 	[
-		"/Users/Mac/dev/cool-translator/src/js/services/linguee/styles.sass",
-		"/Users/Mac/dev/cool-translator/src/js/services/ll/styles.sass",
 		"/Users/Mac/dev/cool-translator/webpack.config.js",
+		"/Users/Mac/dev/cool-translator/public/inject_content_iframe.js",
+		"/Users/Mac/dev/cool-translator/public/content_iframe.html",
+		"/Users/Mac/dev/cool-translator/public/manifest.json",
+		"/Users/Mac/dev/cool-translator/src/js/content/inject_content_iframe.js",
+		"/Users/Mac/dev/cool-translator/src/styles/content-iframe.sass",
+		"/Users/Mac/dev/cool-translator/src/styles/language-selector.sass",
+		"/Users/Mac/dev/cool-translator/src/styles/common.sass",
+		"/Users/Mac/dev/cool-translator/src/styles/add-translation.sass",
+		"/Users/Mac/dev/cool-translator/src/styles/translation-dialog.sass",
+		"/Users/Mac/dev/cool-translator/src/js/popup/de/index.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/add-translation.js",
-		"/Users/Mac/dev/cool-translator/src/js/controls/language-selector.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/source.js",
+		"/Users/Mac/dev/cool-translator/src/js/popup/login/index.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/login-form.js",
+		"/Users/Mac/dev/cool-translator/src/js/controls/language-selector.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/notification-popup.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/select-book.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/source-tab.js",
-		"/Users/Mac/dev/cool-translator/src/js/controls/source.js",
 		"/Users/Mac/dev/cool-translator/src/js/controls/translation-dialog.js",
+		"/Users/Mac/dev/cool-translator/public/assets/popuplogin.js",
+		"/Users/Mac/dev/cool-translator/package.json",
+		"/Users/Mac/dev/cool-translator/src/js/services/linguee/styles.sass",
+		"/Users/Mac/dev/cool-translator/src/js/services/ll/styles.sass",
 		"/Users/Mac/dev/cool-translator/src/js/services/abby/styles.sass",
 		"/Users/Mac/dev/cool-translator/src/js/content/index.js",
-		"/Users/Mac/dev/cool-translator/src/js/popup/de/index.js",
-		"/Users/Mac/dev/cool-translator/src/js/popup/login/index.js",
 		"/Users/Mac/dev/cool-translator/src/styles/add-translation.scss",
 		"/Users/Mac/dev/cool-translator/src/styles/language-selector.scss",
 		"/Users/Mac/dev/cool-translator/src/styles/login-form.scss",
@@ -399,7 +410,6 @@
 		"/Users/Mac/dev/cool-translator/src/styles/select-book.scss",
 		"/Users/Mac/dev/cool-translator/src/styles/translation-dialog.scss",
 		"/Users/Mac/dev/cool-translator/src/js/services/abby/styles.scss",
-		"/Users/Mac/dev/cool-translator/package.json",
 		"/Users/Mac/dev/coolvocabulary/CoolVocabulary/Scripts/cool-translator/webpack.config.js",
 		"/Users/Mac/dev/coolvocabulary/CoolVocabulary/Scripts/cool-translator/package.json",
 		"/Users/Mac/dev/new-prezident/new-prezident/SPA/app/components/video-collection.js",
@@ -474,6 +484,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"keyDown",
+			"document.addEventListener",
+			"manifest",
 			"detectedLanguages",
 			"_filterSupportedLanguages",
 			"arrow-left",
@@ -598,8 +611,7 @@
 			"source",
 			"buffer",
 			"sendAdminEmail",
-			"\n        ",
-			"form"
+			"\n        "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -622,28 +634,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/styles/common.sass",
+					"file": "src/js/content/ct-content.js",
 					"settings":
 					{
-						"buffer_size": 5245,
+						"buffer_size": 7976,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								626,
-								626
+								7514,
+								7514
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 315.0,
+						"translation.y": 2557.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
