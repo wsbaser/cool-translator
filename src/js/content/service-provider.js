@@ -119,7 +119,7 @@ export default class ServiceProvider {
       let connection = this.getConnection();
       let vocabulary = this.getVocabulary();
       let arr =
-        [this._createLLSource(connection, vocabulary),
+        [ this._createLLSource(connection, vocabulary),
           this._createAbbySource(connection, vocabulary),
           this._createGoogleSource(connection, vocabulary),
           this._createLingueeSource(connection, vocabulary),

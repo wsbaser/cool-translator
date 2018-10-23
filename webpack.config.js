@@ -17,8 +17,9 @@ module.exports = {
     background: "./js/background",
     content: "./js/content",
     injectcontentiframe: "./js/content/inject_content_iframe",
+    netflixsubtitles: "./js/content/netflix_subtitles",
     popupde: "./js/popup/de",    
-    popuplogin: "./js/popup/login"
+    popuplogin: "./js/popup/login",
   },
 
   output: {

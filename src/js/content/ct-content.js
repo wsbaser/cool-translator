@@ -71,7 +71,6 @@ export default class CTContent {
 
           if (event.data.type && (event.data.type == "SHOW_DIALOG")) {
             this.dialog.showForExtension(event.data.text);
-            this._showDialogForCurrentSelection(null, true);
           }
         }.bind(this), false);
 

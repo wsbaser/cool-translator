@@ -14,7 +14,7 @@ iframe.id="ctr";
 iframe.style.display='none';
 document.body.appendChild(iframe);
 
-window.addEventListener("message", onDialogHidden, false);
+window.addEventListener("message", onMessage, false);
 
 document.addEventListener('keydown', function(e){
     function cancelEvent(e) {
@@ -47,8 +47,10 @@ document.addEventListener('dblclick', function dblClick(event) {
         inputElement = event.target;
     }
     let text = getSelectedText(inputElement);
-    sendShowDialogMessage(text);
-    return false;
+    if(text){
+        sendShowDialogMessage(text);
+        return false;
+    }
 });
 
 function getSelectedText(inputElement){
@@ -80,14 +82,22 @@ function sendShowDialogMessage(text){
     }, "*");
 }
 
-function onDialogHidden(event){
-  // We only accept messages from ctr iframe
-  if (event.source != iframe.contentWindow)
-    return;
-
-  if (event.data.type && (event.data.type == "DIALOG_HIDDEN")) {
-    iframe.style.display='none';
-    window.focus();
-  }
+function onMessage(event){
+    if (event.source == iframe.contentWindow){
+        // ctr iframe
+        if (event.data && (event.data.type=="DIALOG_HIDDEN")) {
+            iframe.style.display='none';
+            window.focus();
+            // if(isNetflix){
+                window.postMessage({
+                    type: "FOCUS_NETFLIX_PLAYER"
+                }, "*");
+            // }
+        }
+    }else if(event.source==window){
+        // top window
+        if (event.data && (event.data.type=="SHOW_DIALOG")) {
+            sendShowDialogMessage(event.data.text);
+        }
+    }
 }
-

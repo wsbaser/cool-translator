@@ -33,7 +33,17 @@ export default class DictionaryProvider {
     }
 
     resolveWithJQueryElement(deferred, data, selector) {
-        deferred.resolve($(data).find(selector));
+        let $element = $(data).find(selector);
+        $element.find('img').each(function(i, itemEl){
+            itemEl = $(itemEl);
+            let src = itemEl.attr('src');
+            if(src.startsWith('//')){
+                itemEl.attr('src', 'https:' + src);
+            }else if(src.startsWith('http')){
+                itemEl.attr('src', 'https' + src.slice(4));
+            }
+        });
+        deferred.resolve($element);
     }
 
     formatRequestUrl(url, data) {

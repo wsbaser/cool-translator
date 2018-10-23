@@ -92,7 +92,7 @@ export default class LLService extends DictionaryService {
             soundUrl: response.sound_url || '',
             soundHint: 'Listen',
             hasPic: !!response.pic_url,
-            picUrl: response.pic_url || chrome.extension.getURL('assets/images/ll/blank.gif'),
+            picUrl: response.pic_url ? response.pic_url.replace('http','https') : chrome.extension.getURL('assets/images/ll/blank.gif'),
             context: null,
             wordLink: inDict ? this.config.domain + templatesHelper.formatStr(this.config.path.wordArticle, {
                 originalWord: originalWord.toLocaleLowerCase()

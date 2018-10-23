@@ -2,7 +2,7 @@
   "author": "wsbaser",
   "manifest_version": 2,
   "name": "Cool Translator",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "7 languages, 6 supported translation services. Translate words, add words to vocabulary, memorize words at coolvocabulary.com.",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "icons": {
@@ -21,6 +21,12 @@
       ],
     "css": [],
     "matches": [ "<all_urls>" ],
+    "run_at": "document_end"
+  },{
+    "js": [
+      "assets/netflixsubtitles.js"
+      ],
+    "matches": [ "https://www.netflix.com/*" ],
     "run_at": "document_end"
   }],
   "permissions": ["tabs", "<all_urls>"],
