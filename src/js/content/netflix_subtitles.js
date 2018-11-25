@@ -24,21 +24,27 @@ class SubtitlesConverter {
                 this.netflix.player.pause();
             }
         }.bind(this));
-        // $("body").on("mouseout", ".ctr-sub-word", function(e) {
-        //     console.log("mouseout");
-        //     e.target.classList.remove("ctr-selected");
-        // });
-        // $("body").on("mouseenter", ".ctr-sub-word", function(e) {
-        //     console.log("mouseenter");
-        //     e.target.classList.add("ctr-selected");
-        // });
+
         $("body").on("click", ".ctr-sub-word", function(e){
-            $(".ctr-sub-word").map(function(i, e){
-                e.classList.remove("ctr-selected");
-            });
-            e.target.classList.add("ctr-selected");
+            // $(".ctr-sub-word").map(function(i, e){
+            //     e.classList.remove("ctr-selected");
+            // });
+            // e.target.classList.add("ctr-selected");
             this.showTranslation(e.target.textContent);
         }.bind(this));
+
+        document.addEventListener('keydown', function(e){
+            let isCommandKeyPressed = e.shiftKey || e.ctrlKey || e.altKey || e.metaKey;
+            if (!isCommandKeyPressed && e.keyCode === 32) {
+                this._hideDialog();
+            }
+        }.bind(this), true);
+    }
+
+    _hideDialog(){
+        window.postMessage({
+            type: "HIDE_DIALOG"
+        }, "*");
     }
 
     _onMessage(event){
@@ -47,7 +53,18 @@ class SubtitlesConverter {
         }
 
         if (event.data && (event.data.type=="FOCUS_NETFLIX_PLAYER")) {
-            $(".button-nfplayerPlay").focus();
+            // let $tofocus = $(".button-nfplayerPlay");
+            // let focused;
+            // while(window.document.activeElement!=focused && $tofocus[0]){
+            //     focused = $tofocus[0];
+            //     console.log(focused);
+            //     focused.focus();
+            //     $tofocus=$tofocus.parent().closest(":visible");
+            // }
+            // console.log(window.document.activeElement);
+
+            $(".nf-player-container").focus();
+
             var mouseMoveEvent = document.createEvent("MouseEvents");
             mouseMoveEvent.initMouseEvent(
                        "mousemove", //event type : click, mousedown, mouseup, mouseover, mousemove, mouseout.  
@@ -80,12 +97,20 @@ class SubtitlesConverter {
     }
 
     start(){
-    	$(".player-timedtext").appendTo(".controls");
+        $(".player-timedtext").appendTo(".PlayerControlsNeo__layout");
+        this._injectCtrIframe();
         this.observer.observe(document.querySelector("body"), {
             subtree: !0,
             childList: !0,
             characterData: !1
         });
+    }
+
+    _injectCtrIframe(){
+        window.postMessage({
+            type: "INJECT_IFRAME_TO",
+            rootSelector: ".PlayerControlsNeo__layout"
+        }, "*");
     }
 
     _processAddedNodes(addedNodes){

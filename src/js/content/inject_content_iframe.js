@@ -5,14 +5,31 @@ import StringHelper from 'string-helper';
 import SelectionHelper from 'selection-helper';
 
 window.isMac = window.navigator.userAgent.toLowerCase().indexOf('macintosh') > -1;
-let url = chrome.extension.getURL('content_iframe.html');
 
-// .inject iframe
-let iframe = document.createElement('iframe');
-iframe.src = url;
-iframe.id="ctr";
-iframe.style.display='none';
-document.body.appendChild(iframe);
+injectIframeTo('body');
+
+function injectIframeTo(rootSelector){
+    if(window.iframe){
+        window.iframe.remove()
+        //window.iframe.parentNode.removeChild(window.iframe);
+    }
+    window.iframe = document.createElement('iframe');
+    iframe.src = chrome.extension.getURL('content_iframe.html');;
+    iframe.id="ctr";
+    iframe.style.display='none';
+    document.querySelector(rootSelector).appendChild(iframe);
+}
+
+// let f = function(){
+//     if($('.controls')[0]){
+//         $('.controls').append(iframe);
+//     }
+//     else{
+//         setTimeout(f,500);
+//     }
+// };
+// setTimeout(f,500);
+
 
 window.addEventListener("message", onMessage, false);
 
@@ -82,6 +99,12 @@ function sendShowDialogMessage(text){
     }, "*");
 }
 
+function sendHideDialogMessage(){
+    iframe.contentWindow.postMessage({
+        type: "HIDE_DIALOG"
+    }, "*");
+}
+
 function onMessage(event){
     if (event.source == iframe.contentWindow){
         // ctr iframe
@@ -96,8 +119,18 @@ function onMessage(event){
         }
     }else if(event.source==window){
         // top window
-        if (event.data && (event.data.type=="SHOW_DIALOG")) {
-            sendShowDialogMessage(event.data.text);
+        if (event.data) {
+            switch(event.data.type){
+                case "INJECT_IFRAME_TO":
+                    injectIframeTo(event.data.rootSelector);
+                    break;
+                case "SHOW_DIALOG":
+                    sendShowDialogMessage(event.data.text);
+                    break;
+                case "HIDE_DIALOG":
+                    sendHideDialogMessage();
+                    break;
+            }
         }
     }
 }

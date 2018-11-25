@@ -1,3 +1,6 @@
+# production
+/public/assets
+
 *.zip
 
 # Logs

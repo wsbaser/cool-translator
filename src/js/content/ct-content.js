@@ -69,8 +69,15 @@ export default class CTContent {
           if (event.source != window.top)
             return;
 
-          if (event.data.type && (event.data.type == "SHOW_DIALOG")) {
-            this.dialog.showForExtension(event.data.text);
+          if (event.data){
+            switch(event.data.type){
+                case "SHOW_DIALOG":
+                    this.dialog.showForExtension(event.data.text);
+                    break;
+                case "HIDE_DIALOG":
+                    this.dialog.hide();
+                    break;
+            }
           }
         }.bind(this), false);
 
