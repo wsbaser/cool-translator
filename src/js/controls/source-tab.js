@@ -37,8 +37,8 @@ export default class SourceTab{
             this._bindDataEvents(this.contentEl);
             this.navigationEl.addClass(ACTIVE_CLASS);
             if (this.contentType === ContentTypes.TRANSLATIONS) {
-                this.addTranslation.init(this);
-                this.rootEl.append(this.addTranslation.el);
+                //this.addTranslation.init(this);
+                //this.rootEl.append(this.addTranslation.el);
             }
         } else {
             this.navigationEl.removeClass(ACTIVE_CLASS);

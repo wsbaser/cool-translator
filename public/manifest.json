@@ -2,8 +2,8 @@
   "author": "wsbaser",
   "manifest_version": 2,
   "name": "Cool Translator",
-  "version": "1.0.34",
-  "description": "7 languages, 6 supported translation services. Translate words, add words to vocabulary, memorize words at coolvocabulary.com.",
+  "version": "1.0.36",
+  "description": "Translate words on the page. Type in and translate words in Cool Translator popup. Translate subtitles while you watch Netflix.",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "icons": {
       "16": "icons/icon16.png",
@@ -44,10 +44,6 @@
     "assets/images/flags.png",
     "assets/images/sprites.png"],
   "externally_connectable": {
-    "matches": [ "http://localhost:13189/*", "http://localhost/*", "http://coolvocabulary.com/*" ]
-  },
-  "browser_action": {
-    "default_icon": "icons/icon48.png",
-    "default_popup": "popup_login.html"
+    "matches": [ "http://localhost:13189/*", "http://localhost/*"]
   }
 }

@@ -17,7 +17,7 @@ import ContentTypes from '../services/common/content-types';
 import Source from '../controls/source';
 import SourceTab from '../controls/source-tab';
 import TranslationDialog from '../controls/translation-dialog';
-import AddTranslation from '../controls/add-translation';
+// import AddTranslation from '../controls/add-translation';
 
 export default class ServiceProvider {
   //***** PRIVATE *****************************************************************************************************
@@ -29,7 +29,7 @@ export default class ServiceProvider {
   _createMultitranSource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = MultitranConfig;
-    let addTranslation = this._createAddTranslation(vocabulary, '.trans>a');
+    let addTranslation = null;// this._createAddTranslation(vocabulary, '.trans>a');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     let service = new DictionaryServiceProxy(serviceConfig, connection);
     return new Source(service, tabs);
@@ -38,7 +38,7 @@ export default class ServiceProvider {
   _createAbbySource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = AbbyConfig;
-    let addTranslation = this._createAddTranslation(vocabulary, '.l-article__showExamp');
+    let addTranslation = null; //this._createAddTranslation(vocabulary, '.l-article__showExamp');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.PHRASES));
@@ -49,7 +49,7 @@ export default class ServiceProvider {
   _createGoogleSource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = GoogleConfig;
-    let addTranslation = this._createAddTranslation(vocabulary, '.gt-baf-word-clickable');
+    let addTranslation = null; //this._createAddTranslation(vocabulary, '.gt-baf-word-clickable');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.DEFINITIONS));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));
@@ -60,7 +60,7 @@ export default class ServiceProvider {
   _createLingueeSource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = LingueeConfig;
-    let addTranslation = this._createAddTranslation(vocabulary, '.tag_trans>.dictLink');
+    let addTranslation = null; // this._createAddTranslation(vocabulary, '.tag_trans>.dictLink');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     // tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));  
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.PHRASES));
@@ -81,7 +81,7 @@ export default class ServiceProvider {
   _createLLSource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = LLConfig;
-    let addTranslation = this._createAddTranslation(vocabulary, '.ll-translation-item', '.ll-translation-text');    
+    let addTranslation = null; // this._createAddTranslation(vocabulary, '.ll-translation-item', '.ll-translation-text');    
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     let service = new DictionaryServiceProxy(serviceConfig, connection);
     return new Source(service, tabs);
