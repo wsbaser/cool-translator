@@ -43,7 +43,7 @@ export default {
         templatesDir: rootDir
     },
     ajax: {
-        translate: "http://multitran.com/m.exe?l1={sourceLangId}&l2={targetLangId}&s={word}"
+        translate: "https://www.multitran.com/m.exe?l1={sourceLangId}&l2={targetLangId}&s={word}"
     },
     contentTypes: [ContentTypes.TRANSLATIONS],
 }

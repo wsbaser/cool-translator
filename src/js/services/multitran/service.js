@@ -23,17 +23,17 @@ export default class MultitranService extends DictionaryService {
                 if (trEl.childNodes.length === 1) {
                     // . it is a line with translated word
                     let tdEl = trEl.childNodes[0];
-                    if (this._isWordDescriptionLine(tdEl)) {
+                    //if (this._isWordDescriptionLine(tdEl)) {
                         // . remove unnecessary nodes
                         let children = Array.prototype.slice.call(tdEl.children);
-                        let removeStart = children[1].tagName === "EM" ? 2 : 3;
+                        let removeStart = children[0].tagName === "EM" ? 1 : 2;
                         for (let j = removeStart; j < children.length; j++) {
                             tdEl.removeChild(children[j]);
                         };
                         translationsFragment.appendChild(trEl);
-                    } else {
-                        break;
-                    }
+                    //} else {
+                    //    break;
+                    //}
                 } else {
                     // . it is a line with translation
                     translationsFragment.appendChild(trEl);
@@ -65,16 +65,18 @@ export default class MultitranService extends DictionaryService {
     }
 
     _getSpeachPartText(lineCell) {
-        let children = lineCell.children;
-        return children[1] && children[1].tagName === 'EM' ?
-            children[1].textContent :
-            (children[2] && children[2].tagName === 'EM' ? children[2].textContent : null);
+        let spEl = lineCell.querySelector('em');
+        return spEl && spEl.textContent.trim();
+        // let children = lineCell.children;
+        // return children[1] && children[1].tagName === 'EM' ?
+        //     children[1].textContent :
+        //     (children[2] && children[2].tagName === 'EM' ? children[2].textContent : null);
     }
 
-    _isWordDescriptionLine(lineCell) {
-        return this._getSpeachPartText(lineCell) &&
-            lineCell.children[0] && lineCell.children[0].tagName === 'A';
-    }
+    // _isWordDescriptionLine(lineCell) {
+    //     return this._getSpeachPartText(lineCell) &&
+    //         lineCell.children[0] && lineCell.children[0].tagName === 'A';
+    // }
 
     getTranslations(inputData) {
         let self = this;
@@ -90,9 +92,9 @@ export default class MultitranService extends DictionaryService {
                 if (trEl.childNodes.length === 1) {
                     // . it is a line with translated word
                     let tdEl = trEl.childNodes[0];
-                    if (this._isWordDescriptionLine(tdEl)) {
+                    // if (this._isWordDescriptionLine(tdEl)) {
                         // . get lemma
-                        currentLemma = tdEl.children[0].textContent;
+                        currentLemma = tdEl.childNodes[0].textContent.trim();
                         if (!result[currentLemma]) {
                             result[currentLemma] = {};
                         }
@@ -101,10 +103,10 @@ export default class MultitranService extends DictionaryService {
                         if (!result[currentLemma][currentSP]) {
                             result[currentLemma][currentSP] = [];
                         }
-                    } else {
+                    // } else {
                         // . no more translations. stop parsing
-                        break;
-                    }
+                        // break;
+                    // }
                 } else {
                     let transEl = trEl.querySelector('.trans');
                     if (transEl) {
