@@ -6,6 +6,7 @@ import LingueeConfig from '../services/linguee/config';
 import LLConfig from '../services/ll/config';
 import MultitranConfig from '../services/multitran/config';
 import TFDConfig from '../services/tfd/config';
+import FCConfig from '../services/fc/config';
 import CVConfig from '../services/cv/config';
 import ServicesConnection from '../services/services-connection';
 import Vocabulary from '../services/vocabulary';
@@ -78,6 +79,14 @@ export default class ServiceProvider {
     return new Source(service, tabs);
   }
 
+  _createFCSource(connection) {
+    let tabs = [];
+    let serviceConfig = FCConfig;
+    tabs.push(new SourceTab(serviceConfig.id, ContentTypes.COLLOCATIONS));
+    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    return new Source(service, tabs);
+  }
+
   _createLLSource(connection, vocabulary) {
     let tabs = [];
     let serviceConfig = LLConfig;
@@ -124,6 +133,7 @@ export default class ServiceProvider {
           this._createGoogleSource(connection, vocabulary),
           this._createLingueeSource(connection, vocabulary),
           this._createTfdSource(connection),
+          this._createFCSource(connection),
           this._createMultitranSource(connection, vocabulary)
         ];
       arr.sort(function(a, b) {

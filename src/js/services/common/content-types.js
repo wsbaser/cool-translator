@@ -1,6 +1,7 @@
 'use strict';
 
 export default {
+	COLLOCATIONS : "collocations",
 	TRANSLATIONS : "translations",
 	DEFINITIONS : "definitions",
 	THESAURUS : "thesaurus",
@@ -9,6 +10,8 @@ export default {
 	VERBTABLE : "verbtable",
 	getTitle : function(contentType){
 		switch(contentType){
+			case this.COLLOCATIONS:
+				return 'Collocations';
 			case this.TRANSLATIONS:
 				return 'Translations';
 			case this.DEFINITIONS:

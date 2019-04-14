@@ -6,6 +6,7 @@ import LingueeConfig from '../services/linguee/config';
 import LLConfig from '../services/ll/config';
 import MultitranConfig from '../services/multitran/config';
 import TFDConfig from '../services/tfd/config';
+import FCConfig from '../services/fc/config';
 import CVConfig from '../services/cv/config';
 
 import AbbyProvider from '../services/abby/provider';
@@ -14,6 +15,7 @@ import LingueeProvider from '../services/linguee/provider';
 import LLProvider from '../services/ll/provider';
 import MultitranProvider from '../services/multitran/provider';
 import TFDProvider from '../services/tfd/provider';
+import FCProvider from '../services/fc/provider';
 import CVProvider from '../services/cv/provider';
 
 import AbbyService from '../services/abby/service';
@@ -22,6 +24,7 @@ import LingueeService from '../services/linguee/service';
 import LLService from '../services/ll/service';
 import MultitranService from '../services/multitran/service';
 import TFDService from '../services/tfd/service';
+import FCService from '../services/fc/service';
 import CVService from '../services/cv/service';
 
 export default class ServiceProvider{
@@ -49,8 +52,12 @@ export default class ServiceProvider{
 		return this._multitran ||(this._multitran = new MultitranService(new MultitranProvider(MultitranConfig)));
 	}
 
+	get fc(){
+		return this._fc ||(this._fc = new FCService(new FCProvider(FCConfig)));
+	}
+
 	get dictionaryServices(){
-		return [this.ll, this.abby, this.google, this.tfd, this.linguee, this.multitran];
+		return [this.ll, this.abby, this.google, this.tfd, this.linguee, this.multitran, this.fc];
 	}
 
 	get cv(){

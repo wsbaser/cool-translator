@@ -106,6 +106,12 @@ export default class DictionaryService {
 		});
 	}
 
+	removeScripts(rootEl) {
+		rootEl.find('script').each(function(i, itemEl) {
+			$(itemEl).remove();
+		});
+	}
+
 	addTranslateContentEvent(rootEl, selector) {
 		rootEl.find(selector).each(function(i, itemEl) {
 			this.addEventData($(itemEl), 'click', 'commonHandlers.show_dialog_for_content', 'this');
