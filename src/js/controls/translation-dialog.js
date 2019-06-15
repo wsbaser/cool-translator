@@ -180,7 +180,7 @@ export default class TranslationDialog {
     this.lastRequestData = inputData;
 
     if (this.isExtension) {
-      self._detectLanguageAndLoadAll(inputData);
+       self._detectLanguageAndLoadAll(inputData);
     } else {
       self._loadAll(inputData);
     }
@@ -207,7 +207,9 @@ export default class TranslationDialog {
   }
 
   _filterSupportedLanguages(languages){
-    return languages.filter(l=> this.allSupportedLangs.indexOf(l)!==-1); 
+    if(languages){
+      return languages.filter(l=> this.allSupportedLangs.indexOf(l)!==-1); 
+    }
   }
 
   _getDetectedLanguages(inputData, callback){
@@ -238,25 +240,31 @@ export default class TranslationDialog {
   setDetectedLangPair(inputData, languages){
     if (languages && languages.length && languages.indexOf(inputData.sourceLang) == -1) {
       // . languages detected and sourceLang is WRONG
-      if (languages.indexOf(inputData.sourceLang) === -1 &&
-        languages.indexOf(inputData.targetLang) !== -1) {
+      if (languages.indexOf(inputData.targetLang) !== -1) {
         // . SWITCH languages
         this.langSwitcher.switch();
         return true;
-      } else {
-        // . sourceLang and targetLang are WRONG
-        if(languages.length===1){
-          // . sourceLang is NOT AMBIGUOUS
-          var langPair = this.createLangPair(languages[0], 'ru'); //window.navigator.language);
-          this.setLangPair(langPair);
-          return true;
-        }
-        else{
-          // . sourceLang is AMBIGUOUS
-          //   user should select correct source language
-          this._showDetectedLanguages(languages);
-        }
       }
+
+      // // . languages detected and sourceLang is WRONG
+      // if (languages.indexOf(inputData.targetLang) !== -1) {
+      //   // . SWITCH languages
+      //   this.langSwitcher.switch();
+      //   return true;
+      // } else {
+      //   // . sourceLang and targetLang are WRONG
+      //   if(languages.length===1){
+      //     // . sourceLang is NOT AMBIGUOUS
+      //     var langPair = this.createLangPair(languages[0], 'ru'); //window.navigator.language);
+      //     this.setLangPair(langPair);
+      //     return true;
+      //   }
+      //   else{
+      //     // . sourceLang is AMBIGUOUS
+      //     //   user should select correct source language
+      //     this._showDetectedLanguages(languages);
+      //   }
+      // }
     }
     return false;
   }

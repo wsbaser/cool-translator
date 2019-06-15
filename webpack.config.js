@@ -4,7 +4,7 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-let EXTENSION_ID = 'cifbpdjhjkopeekabdgfjgmcbcgloioi'; //process.env.NODE_ENV=='development' ? 'hppnppiichjojpkkkakmbdhnoabhmdji':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
+let EXTENSION_ID = 'hppnppiichjojpkkkakmbdhnoabhmdji'; //process.env.NODE_ENV=='development' ? 'hppnppiichjojpkkkakmbdhnoabhmdji':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
 
 console.log('NODE_ENV: ' + process.env.NODE_ENV);
 console.log('EXTENSION_ID: '+ EXTENSION_ID);

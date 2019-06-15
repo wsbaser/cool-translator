@@ -2,7 +2,7 @@
   "author": "wsbaser",
   "manifest_version": 2,
   "name": "Cool Translator",
-  "version": "1.0.37",
+  "version": "1.0.38",
   "description": "Translate words on the page. Type in and translate words in Cool Translator popup. Translate subtitles while you watch Netflix.",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "icons": {
