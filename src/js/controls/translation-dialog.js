@@ -2,6 +2,7 @@
 
 import 'translation-dialog.sass';
 
+import WordMetadata from './word-metadata';
 import LangSelector from './language-selector';
 import LangSwitcher from './language-switcher';
 import LoginForm from './login-form';
@@ -27,6 +28,7 @@ const TEMPLATE =
         <form id="ctr_wordInputForm">\
             <div id="sourceLangSelector"></div>\
             <input type="text" id="ctr_wordInput" maxlength="255" value="" placeholder="Type word for translation" class="ctr-input">\
+            <div id="wordMetadata"></div>\
             <div id="targetLangSelector"></div>\
         </form>\
         <div id="ctr_sources"></div>\
@@ -74,7 +76,12 @@ export default class TranslationDialog {
     this.reactor.registerEvent(TranslationDialog.LANG_PAIR_CHANGED);
     this.reactor.registerEvent(TranslationDialog.ON_HIDDEN);
 
+    /* BIND EVENTS */
+
     this.vocabulary.addEventListener(Vocabulary.CHECK_AUTH_END, this._onCheckAuthEnd.bind(this));
+    function bindMetadataReceivedEvent(source){
+      source.addMetadataReceivedListener(self.showMetadata.bind(self));
+    }
     function bindAddTranslationEvents(tab){
       if(tab.addTranslation){
         tab.addTranslation.addEventListener(AddTranslation.SHOW_LOGIN, self.showLoginForm.bind(self));
@@ -84,6 +91,7 @@ export default class TranslationDialog {
       }
     }
     for(var id in this.allSources){
+      bindMetadataReceivedEvent(this.allSources[id]);
       this.allSources[id].tabs.forEach(bindAddTranslationEvents);
     }
   }
@@ -333,12 +341,14 @@ export default class TranslationDialog {
     this.selectBook = new SelectBook('.popover-container');
     this.inputFormEl = $('#ctr_wordInputForm');
     $('#ctr_closeBtn').bind('click', this.hide);
+    this.inputFormEl.bind('focus', this._focusInput.bind(this));
     this.inputFormEl.bind('submit', this._submitInputData.bind(this));
     //$('#ctr_settings_icon').bind('click', this.openSettings);
     $('#ctr_header_bg').show();
     $('#ctr_header_buttons').show();
 
     this._initLangSelectors();
+    this._initWordMetadata();
     this._appendSourcesContent();
     this._updateSourcesList();
     this.activateSourceWithActiveLink();
@@ -360,6 +370,10 @@ export default class TranslationDialog {
         this.inputEl.removeClass('rtl');
       }
     }
+  }
+
+  _initWordMetadata(){
+    this.wordMetadata = new WordMetadata('#wordMetadata');
   }
 
   _initLangSelectors() {
@@ -444,11 +458,17 @@ export default class TranslationDialog {
     }
   }
 
+  _focusInput() {
+    if(this.wordMetadata){
+      this.wordMetadata.hide();
+    }
+    return false;
+  }
+
   _submitInputData() {
     this._updateSourcesContent(true);
     return false;
   }
-
 
 
   //***** HANDLERS ****************************************************************************************************
@@ -574,6 +594,26 @@ export default class TranslationDialog {
         callback();
       }
     }
+  }
+
+  _measureInputText() {
+    var input = document.getElementById("txtid");
+    var c = document.createElement("canvas");
+    var ctx = c.getContext("2d");
+    var txtWidth = ctx.measureText(input.value).width;
+
+    return txtWidth;
+  }
+
+  showMetadata(inputData, metadata){
+    if(!this.wordMetadata.isVisible()){
+      this.wordMetadata.show(inputData, this._measureInputText());
+    }
+    else if(!this.wordMetadata.isInputDataEqual(inputData)){
+      // .invalid input data
+      return;
+    }
+    this.wordMetadata.addMetadata(metadata);
   }
 
   _getMaxPopoverHeight(){

@@ -2,6 +2,8 @@
 
 import 'translation-dialog.sass';
 
+import Reactor from 'reactor';
+
 const ACTIVE_CLASS = 'ctr-active';
 const ROOT_CLASS = 'ctr-source-root';
 const ARTICLE_CLASS = 'ctr-source-article';
@@ -18,7 +20,18 @@ export default class Source {
         this.navigationEl = null;
         this.articleEl = null;
         this.currentTabIndex = null;
+
+        this.reactor = new Reactor();
+        this.reactor.registerEvent(Source.METADATA_RECEIVED);
     }
+
+    //***** STATIC ****************************************************************************************************
+
+    static get METADATA_RECEIVED(){
+        return 'metadataReceived';
+    }
+
+    //***** STATIC ****************************************************************************************************
 
     init() {
         this._createRootEl();
@@ -152,6 +165,7 @@ export default class Source {
                 promise.done(function(result) {
                         if (!self._validateResult(result))
                             return;
+                        self.reactor.dispatchEvent(Source.METADATA_RECEIVED, requestData, result.metadata);
                         tab.init(result.inputData, result.cards, null, result.prompts);
                     })
                     .fail(function(result) {
@@ -202,5 +216,9 @@ export default class Source {
 
     hide() {
         this.rootEl.hide();
+    }
+
+    addMetadataReceivedListener(callback) {
+        this.reactor.addEventListener(Source.METADATA_RECEIVED, callback);
     }
 }
