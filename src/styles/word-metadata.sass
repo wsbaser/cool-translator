@@ -1,5 +1,20 @@
 @import 'common.sass'
 
 #ctr_dialog
-	#wordMetadata
-		position: absolute
+    #wordMetadata
+        position: absolute !important
+        display: block !important
+        top: 15px
+
+        .play-sound
+            position: absolute !important
+            display: block !important
+            width: 16px !important
+            height: 16px !important
+            background: url('../images/linguee/sprites14.png') no-repeat -41px -40px !important
+            padding-right: 1px !important
+            opacity: .35 !important
+            cursor: pointer
+
+            &.playing
+            	opacity: .7 !important

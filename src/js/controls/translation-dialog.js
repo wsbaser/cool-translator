@@ -340,9 +340,10 @@ export default class TranslationDialog {
     this.loginForm = new LoginForm('.popover-container');
     this.selectBook = new SelectBook('.popover-container');
     this.inputFormEl = $('#ctr_wordInputForm');
-    $('#ctr_closeBtn').bind('click', this.hide);
-    this.inputFormEl.bind('focus', this._focusInput.bind(this));
+    this.inputEl = $('#ctr_wordInput');
+    this.inputEl.bind('focus', this._onFocusInput.bind(this));
     this.inputFormEl.bind('submit', this._submitInputData.bind(this));
+    $('#ctr_closeBtn').bind('click', this.hide);
     //$('#ctr_settings_icon').bind('click', this.openSettings);
     $('#ctr_header_bg').show();
     $('#ctr_header_buttons').show();
@@ -415,6 +416,7 @@ export default class TranslationDialog {
     if (this.isActive) {
       this.hideLoginForm();
       this.hideSelectBook();
+      this.wordMetadata.hide();
       this.el.removeClass('ctr-show');
       this.el.addClass('ctr-hide');
 
@@ -458,13 +460,6 @@ export default class TranslationDialog {
     }
   }
 
-  _focusInput() {
-    if(this.wordMetadata){
-      this.wordMetadata.hide();
-    }
-    return false;
-  }
-
   _submitInputData() {
     this._updateSourcesContent(true);
     return false;
@@ -492,12 +487,18 @@ export default class TranslationDialog {
     //return false;
   }
 
+  _onFocusInput(){
+    if(this.wordMetadata){
+      this.wordMetadata.hide();
+    }
+    return false;
+  }
+
   //***** PUBLIC ******************************************************************************************************
 
   showForExtension(word) {
     this._create();
     this.el[0].removeAttribute('style');
-    this.inputEl = $('#ctr_wordInput');
     this.el.removeClass('ctr-site');
     this.el.addClass('ctr-extension');
     this.inputFormEl.showImportant();
@@ -597,10 +598,9 @@ export default class TranslationDialog {
   }
 
   _measureInputText() {
-    var input = document.getElementById("txtid");
     var c = document.createElement("canvas");
     var ctx = c.getContext("2d");
-    var txtWidth = ctx.measureText(input.value).width;
+    var txtWidth = ctx.measureText(this.inputEl.val()).width;
 
     return txtWidth;
   }

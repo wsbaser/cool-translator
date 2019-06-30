@@ -37,6 +37,12 @@ export default class DictionaryService {
 		return this[methodName](data);
 	}
 
+	getMetadata(inputData){
+		return {
+			soundUrls: this.getSoundUrls(inputData)
+		};
+	}
+
 	/* If service did not recognized word it can provide prompts with similar words */
 	generatePrompts(contentType, data) {
 		var methodName = 'generate' + StringHelper.capitalizeFirstLetter(contentType) + 'Prompts';
@@ -68,13 +74,14 @@ export default class DictionaryService {
 			cards[contentType] = deferred;
 			dataPromise.done(function(data) {
 					var card = self.generateCard(contentType, data);
+					var cachedData = self.cacheResponseData ? data : card;
+					self.saveToCache(requestData, contentType, cachedData);
 					deferred.resolve({
 						inputData: requestData,
 						cards: card,
-						prompts: self.generatePrompts(contentType, data)
+						prompts: self.generatePrompts(contentType, data),
+						metadata: self.getMetadata(requestData)
 					});
-					var cachedData = self.cacheResponseData ? data : card;
-					self.saveToCache(requestData, contentType, cachedData);
 				})
 				.fail(function(error) {
 					deferred.reject({
