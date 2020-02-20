@@ -4,7 +4,7 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-let EXTENSION_ID = 'hppnppiichjojpkkkakmbdhnoabhmdji'; //process.env.NODE_ENV=='development' ? 'hppnppiichjojpkkkakmbdhnoabhmdji':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
+let EXTENSION_ID = 'gnhjbflmopbjjpiebbeiafgeekpmlofn'; //process.env.NODE_ENV=='development' ? 'hppnppiichjojpkkkakmbdhnoabhmdji':'cifbpdjhjkopeekabdgfjgmcbcgloioi';
 
 console.log('NODE_ENV: ' + process.env.NODE_ENV);
 console.log('EXTENSION_ID: '+ EXTENSION_ID);
@@ -24,7 +24,7 @@ module.exports = {
 
   output: {
     path: __dirname + '/public/assets',
-    publicPath: 'chrome-extension://' + EXTENSION_ID + '/assets/',
+    publicPath: '/assets/',
     filename: "[name].js",
     library: "[name]"
   },

@@ -54,19 +54,22 @@ document.addEventListener('keydown', function(e){
 }, true);
 
 document.addEventListener('dblclick', function dblClick(event) {
-    if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+    if (event.shiftKey || event.altKey || event.metaKey) {
         // . do not show dialog if any command key pressed
         return;
     }
-    let inputElement = null;
-    if (typeof event.target.tagName !== 'undefined' &&
-        (event.target.tagName.toLowerCase() === 'input' || event.target.tagName.toLowerCase() === 'textarea')) {
-        inputElement = event.target;
-    }
-    let text = getSelectedText(inputElement);
-    if(text){
-        sendShowDialogMessage(text);
-        return false;
+    if(event.ctrlKey ){
+        // . show dialog only if Ctrl is pressed
+        let inputElement = null;
+        if (typeof event.target.tagName !== 'undefined' &&
+            (event.target.tagName.toLowerCase() === 'input' || event.target.tagName.toLowerCase() === 'textarea')) {
+            inputElement = event.target;
+        }
+        let text = getSelectedText(inputElement);
+        if(text){
+            sendShowDialogMessage(text);
+            return false;
+        }
     }
 });
 

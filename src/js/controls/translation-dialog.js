@@ -629,8 +629,10 @@ export default class TranslationDialog {
   }
 
   focusInput() {
-    this.inputEl.select();
-    this.inputEl.focus();
+    setTimeout(function(){
+      this.inputEl.select();
+      this.inputEl.focus();
+    }.bind(this),100);
   }
 
   blurInput() {
