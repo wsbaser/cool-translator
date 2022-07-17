@@ -1,8 +1,7 @@
 /***** NORMALIZE *******************************************************************************************************/
 // Set not inherited styles wich does not intersect with browser styles for specific tags
 
-#ctr_root
-#ctr_root *
+#ctr_root, #ctr_root *
     background: transparent none repeat scroll 0 0 !important
     border: none 0 !important
     border-radius: 0 !important
@@ -19,11 +18,11 @@
     margin: 0 !important
     width: auto !important
     height: auto !important
-    max-height:auto !important
-    max-width:auto !important
-    min-height:auto !important
-    min-width:auto !important
-    outline-style:none !important
+    max-height: auto !important
+    max-width: auto !important
+    min-height: auto !important
+    min-width: auto !important
+    outline-style: none !important
     overflow: visible !important
     padding: 0 !important
     position: static !important
@@ -38,138 +37,80 @@
     word-wrap: break-word !important
 
 #ctr_root
-    .rtl 
-        direction: rtl !important 
+    .rtl
+        direction: rtl !important
         text-align: right !important
         unicode-bidi: bidi-override !important
-    div
-    span
-    a
-    h1
-    h2
-    h3
-    p
-    ul              
-    li             
-    td
-    p
-    button
-    textarea
-    input
-    option
-    b
-    strong
-    i
-    cite
-    em
-    pre
-    tt
-    pre  
+    div,span,a,h1,h2,h3,p,ul,li,td,p,button,textarea,input,option,b,strong,i,cite,em,pre,tt,pre
         font-family: Arial, Helvetica !important
-    div
-    span
-    a
-    h1
-    h2
-    h3
-    p
-    ul              
-    li             
-    td
-    p
-    button
-    textarea
-    input
-    option
+    div,span,a,h1,h2,h3,p,ul,li,td,p,button,textarea,input,option
         font-style: normal !important
-    div
-    form
-    h1
-    h2
-    h3
-    p
-    ul               
-        display: block 
+    div,form,h1,h2,h3,p,ul
+        display: block
         unicode-bidi: embed
-    li               
-        display: list-item 
-    table            
-        display: table 
-    tr               
-        display: table-row 
-    tbody            
-        display: table-row-group 
-    td
-    th           
-        display: table-cell 
-    th               
-        font-weight: bolder 
-        text-align: center 
-    h1               
-        font-size: 2em 
-        margin: .67em 0 
-    h2               
-        font-size: 1.5em 
-        margin: .75em 0 
-    h3               
-        font-size: 1.17em 
-        margin: .83em 0 
-    p
-    ul
-    form             
-        margin: 1.12em 0 
-    h1
-    h2
-    h3
-    b
-    strong           
-        font-weight: bolder 
-    i
-    cite
-    em               
-        font-style: italic 
-    pre
-    tt               
-        font-family: monospace 
-    pre              
-        white-space: pre 
-    img
-    button
-    textarea
-    input
-    select           
-        display: inline-block 
-    tbody            
-        vertical-align: middle 
-    td
+    li
+        display: list-item
+    table
+        display: table
+    tr
+        display: table-row
+    tbody
+        display: table-row-group
+    td,th
+        display: table-cell
     th
-    tr               
-        vertical-align: inherit 
-    br:before        
-        content: "\A" 
-        white-space: pre-line 
+        font-weight: bolder
+        text-align: center
+    h1
+        font-size: 2em
+        margin: .67em 0
+    h2
+        font-size: 1.5em
+        margin: .75em 0
+    h3
+        font-size: 1.17em
+        margin: .83em 0
+    p,ul,form
+        margin: 1.12em 0
+    h1,h2,h3,b,strong
+        font-weight: bolder
+    i,cite,em
+        font-style: italic
+    pre,tt
+        font-family: monospace
+    pre
+        white-space: pre
+    img,button,textarea,input,select
+        display: inline-block
+    tbody
+        vertical-align: middle
+    td,th,tr
+        vertical-align: inherit
+    br:before
+        content: "\A"
+        white-space: pre-line
     .cf:before,
-    .cf:after 
+    .cf:after
         content: ""
         display: table
-    .cf:after 
+    .cf:after
         clear: both
-    .cf 
+    .cf
         *zoom: 1
-    :focus 
+    :focus
         outline: 0
     .blue-button
-        background: linear-gradient(to bottom,  #64c8ef 0%,#00a2e2 100%) !important /* W3C */
+        background: linear-gradient(to bottom, #64c8ef 0%,#00a2e2 100%) !important /* W3C */
         color: #fff !important
         padding: 3px 15px !important
         border-radius: 3px !important
         cursor: pointer !important
-        text-align: center !important    
+        text-align: center !important
     .ctr-spinner
         display: none !important
         position: relative !important
         height: 17px !important
-        div 
+        div
             width: 7px !important
             height: 7px !important
             position: absolute !important
@@ -178,20 +119,20 @@
             background-color: #64c8ef !important
             border-radius: 50% !important
             animation: move 4s infinite cubic-bezier(.2,.64,.81,.23)
-            &:nth-child(2) 
+            &:nth-child(2)
                 animation-delay: 150ms
-            &:nth-child(3) 
+            &:nth-child(3)
                 animation-delay: 300ms
-            &:nth-child(4) 
+            &:nth-child(4)
                 animation-delay: 450ms
     @keyframes move
-        0% 
+        0%
             left: 0%
-        75% 
+        75%
             left: 100%
-        100% 
+        100%
             left: 100%
-            
+
     .ctr-error-result
         padding: 10px !important
 
@@ -202,19 +143,19 @@
         background-image: url('../images/flags.png') !important
         &.ru
             background-position: 0 0 !important
-        &.en 
+        &.en
             background-position: -24px 0 !important
-        &.es 
+        &.es
             background-position: -48px 0 !important
-        &.pt 
+        &.pt
             background-position: -72px 0 !important
-        &.fr 
+        &.fr
             background-position: -96px 0 !important
-        &.it 
+        &.it
             background-position: -120px 0 !important
-        &.de 
+        &.de
             background-position: -144px 0 !important
-        &.ar 
+        &.ar
             background-position: -168px 0 !important
         &.pl
             background-position: 0px -24px !important
