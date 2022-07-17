@@ -23,17 +23,15 @@ export default class MultitranService extends DictionaryService {
                 if (trEl.childNodes.length === 1) {
                     // . it is a line with translated word
                     let tdEl = trEl.childNodes[0];
-                    //if (this._isWordDescriptionLine(tdEl)) {
-                        // . remove unnecessary nodes
-                        let children = Array.prototype.slice.call(tdEl.children);
-                        let removeStart = children[0].tagName === "EM" ? 1 : 2;
-                        for (let j = removeStart; j < children.length; j++) {
-                            tdEl.removeChild(children[j]);
-                        };
+                    if (this._isWordDescriptionLine(tdEl)) {
                         translationsFragment.appendChild(trEl);
-                    //} else {
-                    //    break;
-                    //}
+                    } else if(tdEl.childNodes.length==0){
+                        // . empty line
+                    }
+                    else {
+                        // . we processed all the word description lines
+                        break;
+                    }
                 } else {
                     // . it is a line with translation
                     translationsFragment.appendChild(trEl);
@@ -67,16 +65,11 @@ export default class MultitranService extends DictionaryService {
     _getSpeachPartText(lineCell) {
         let spEl = lineCell.querySelector('em');
         return spEl && spEl.textContent.trim();
-        // let children = lineCell.children;
-        // return children[1] && children[1].tagName === 'EM' ?
-        //     children[1].textContent :
-        //     (children[2] && children[2].tagName === 'EM' ? children[2].textContent : null);
     }
 
-    // _isWordDescriptionLine(lineCell) {
-    //     return this._getSpeachPartText(lineCell) &&
-    //         lineCell.children[0] && lineCell.children[0].tagName === 'A';
-    // }
+    _isWordDescriptionLine(lineCell) {
+        return this._getSpeachPartText(lineCell) && lineCell.querySelectorAll('a').length===1;
+    }
 
     getTranslations(inputData) {
         let self = this;
