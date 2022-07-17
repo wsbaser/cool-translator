@@ -262,6 +262,22 @@ export default function Netflix(jq) {
             button: $('.nfp-button-control.volume'),
           }
         };
+      }else if(netflix.uiVersion === '22'){
+        netflix._elements = {
+          player: $('[data-uia=player]'),
+          video: $('[data-uia=player] video')[0],
+          playPauseButton: $('[data-uia=control-play-pause-pause], [data-uia=control-play-pause-play]'),
+          slider: {
+            timeLeft: $('[data-uia=controls-time-remaining]'),
+            // progressCompleted: $('.current-progress'),
+            bar: $('[data-uia=timeline-bar]'),
+          },
+          fullscreenButton: $('[data-uia=control-fullscreen-enter]'),
+          volume: {
+            bar: $('[data-uia-scrubber-rail]'),
+            button: $('[data-uia=control-volume-medium]'),
+          }
+        };
       }
 
       // Setup player events' condition
@@ -301,8 +317,10 @@ export default function Netflix(jq) {
   netflix.player.registerEvent('ready', function() {
     var oldUI = $("#netflix-player").length && $("#netflix-player .player-play-pause").length && $("#netflix-player video").length;
     var newUI = $(".nf-player-container").length && $(".nf-player-container video").length;
+    var UI22 = $("[data-uia=player]").length && $("[data-uia=player] video").length;
     if (newUI) netflix.uiVersion = 'nf';
-    return oldUI || newUI;
+    if(UI22) netflix.uiVersion = '22';
+    return oldUI || newUI || UI22;
   }, true);
   netflix.player.registerEvent('play');
   netflix.player.registerEvent('playing');
