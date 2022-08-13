@@ -8,6 +8,6 @@ export default class MultitranProvider extends DictionaryProvider {
 	}
 	
 	requestTranslationsData(requestData) {
-		return this.requestPage(this.config.ajax.translate, requestData, '#translation+span+br+table');
+		return this.requestPage(this.config.ajax.translate, requestData, '#translation+div+div+table');
 	}
 }

@@ -68,7 +68,7 @@ export default class MultitranService extends DictionaryService {
     }
 
     _isWordDescriptionLine(lineCell) {
-        return this._getSpeachPartText(lineCell) && lineCell.querySelectorAll('a').length===1;
+        return this._getSpeachPartText(lineCell) && lineCell.querySelectorAll('a').length>0;
     }
 
     getTranslations(inputData) {
