@@ -14,7 +14,7 @@ function injectIframeTo(rootSelector){
         //window.iframe.parentNode.removeChild(window.iframe);
     }
     window.iframe = document.createElement('iframe');
-    iframe.src = chrome.extension.getURL('content_iframe.html');;
+    iframe.src = chrome.runtime.getURL('content_iframe.html');;
     iframe.id="ctr";
     iframe.style.display='none';
     document.querySelector(rootSelector).appendChild(iframe);

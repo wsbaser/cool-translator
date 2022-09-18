@@ -1,19 +1,17 @@
 {
   "author": "wsbaser",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Cool Translator",
   "version": "1.0.38",
   "description": "Translate words on the page. Type in and translate words in Cool Translator popup. Translate subtitles while you watch Netflix.",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-   "icons": {
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
    },
-  "background": {
-    "page": "background.html",
-    "persistent": false
-  },
   "content_scripts": [{
     "all_frames": false,
     "js": [
@@ -29,20 +27,26 @@
     "matches": [ "https://www.netflix.com/*" ],
     "run_at": "document_end"
   }],
-  "permissions": ["tabs", "<all_urls>"],
+  "host_permissions": ["<all_urls>"],
   "web_accessible_resources": [
-    "assets/content.js", 
-    "content_iframe.html", 
-    "assets/images/linguee/sprites14.png", 
-    "assets/images/ll/sound.png",
-    "assets/images/ll/marker.png",
-    "assets/images/ll/blank.gif",
-    "assets/images/abby/icons.png",
-    "assets/images/bg.png",
-    "assets/images/icon16.png",
-    "assets/images/add.png",
-    "assets/images/flags.png",
-    "assets/images/sprites.png"],
+    {
+      "resources": [
+        "assets/content.js",
+        "content_iframe.html", 
+        "assets/images/linguee/sprites14.png", 
+        "assets/images/ll/sound.png",
+        "assets/images/ll/marker.png",
+        "assets/images/ll/blank.gif",
+        "assets/images/abby/icons.png",
+        "assets/images/bg.png",
+        "assets/images/icon16.png",
+        "assets/images/add.png",
+        "assets/images/flags.png",
+        "assets/images/sprites.png"
+      ],
+      "matches": [ "<all_urls>" ]
+    }
+  ],
   "externally_connectable": {
     "matches": [ "http://localhost:13189/*", "http://localhost/*"]
   }
