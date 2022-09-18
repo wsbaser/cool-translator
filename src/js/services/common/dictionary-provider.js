@@ -17,7 +17,7 @@ export default class DictionaryProvider {
 
     handleErrors(response) {
         if (!response.ok) {
-            return Promise.reject(response)
+            return Promise.reject(`Error occured while loading data (${response.status})`)
         }
         return response;
     }

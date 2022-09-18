@@ -11,7 +11,6 @@ export default class ServicesServer{
     }
 
     listener(message, port){
-        let self = this;
         let methodResult = this.callServiceMethod(message.serviceId, message.method, message.params);
         let requestResult = {
             requestGuid: message.requestGuid
