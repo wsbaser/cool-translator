@@ -5,8 +5,8 @@ import ContentTypes from '../common/content-types';
 import SpeachParts from '../common/speach-parts';
 
 export default class LingueeService extends DictionaryService {
-    constructor(provider){
-        super(provider);
+    constructor(config, connection){
+        super(config, connection);
     }
     
     removeExpandIcon(el) {
@@ -14,14 +14,13 @@ export default class LingueeService extends DictionaryService {
         el.find('.expand_i').remove();
     }
 
-    generateTranslationsCard(contentEl) {
-        let self = this;
-        let translationsEl = contentEl.find('.exact').clone();
+    generateTranslationsCard(html) {
+        const translationsEl = this.getRootEl(html, '.innercontent .exact').clone()
         this.deactivateLinks(translationsEl, 'a');
         // . Show translation for word
         this.addTranslateContentEvent(translationsEl, '.tag_lemma>.dictLink');
         this._addPlaySoundEvent(translationsEl, '.audio');
-        self.addEventData(translationsEl, 'click', 'lingueeHandlers.onContentClick');
+        this.addEventData(translationsEl, 'click', 'lingueeHandlers.onContentClick');
 
         // . remove phrases
         translationsEl.find('.example_lines').remove();
@@ -29,8 +28,8 @@ export default class LingueeService extends DictionaryService {
         return translationsEl.outerHTML();
     }
 
-    generatePhrasesCard(contentEl) {
-        let phrasesEl = contentEl.find('.example_lines');
+    generatePhrasesCard(html) {
+        const phrasesEl = this.getRootEl(html, '.innercontent .example_lines')
         phrasesEl.find('h3').remove();
         this.deactivateLinks(phrasesEl, '.dictLink');
         this.addTranslateContentEvent(phrasesEl, '.dictLink');

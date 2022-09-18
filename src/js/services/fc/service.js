@@ -5,8 +5,8 @@ import ContentTypes from '../common/content-types';
 import SpeachParts from '../common/speach-parts';
 
 export default class FCService extends DictionaryService {
-    constructor(provider){
-        super(provider);
+    constructor(config, connection){
+        super(config, connection);
     }
     
     // generatePrompts(contentType, contentEl) {
@@ -37,8 +37,9 @@ export default class FCService extends DictionaryService {
     //     });
     // }
 
-    generateCollocationsCard(contentEl) {
-        let thesaurusEl = contentEl.find('.item');
+    generateCollocationsCard(html) {
+        const rootEl = this.getRootEl(html, '#leftnav')
+        let thesaurusEl = rootEl.find('.item');
         this.removeScripts(thesaurusEl);
         // this.deactivateLinks(thesaurusEl, 'a');
         // this.addTranslateContentEvent(thesaurusEl, 'a');

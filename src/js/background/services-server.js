@@ -17,37 +17,36 @@ export default class ServicesServer{
             requestGuid: message.requestGuid
         };
         let promises = {};
-        if(methodResult.done && methodResult.fail){
+        if(methodResult.then && methodResult.catch){
             // it is a single promise
             requestResult.promiseGuid = guid();
             promises[requestResult.promiseGuid] = methodResult;
         }
         else{
             // it is a dictionary of promises
-            let promiseGuids = {};
-            requestResult.promiseGuids = promiseGuids;
-            $.each(methodResult, function(type, promise){
-                promiseGuids[type] = guid();
-                promises[promiseGuids[type]] = promise;
-            });
+            requestResult.promiseGuids = {};
+            for(let type in methodResult){
+                const promiseGuid = guid()
+                requestResult.promiseGuids[type] = promiseGuid;
+                promises[promiseGuid] = methodResult[type];
+            }
         }
         port.postMessage({
             requestResult: requestResult
         });
         // . bind promise events after sending promises to client
         //   if not, promises coud be resolved before client got their guids
-        $.each(promises, function(guid, promise){
-            self._bindPromiseEvents(promise,port,guid);
-        });
+        for(let guid in promises){
+            this._bindPromiseEvents(promises[guid], port, guid);
+        }
     }
 
-    _bindPromiseEvents(promise,port,guid){
-        let self = this;
-        promise.done(function(data){
-            self.resolvePromise(port, guid, data);
+    _bindPromiseEvents(promise, port, guid){
+        promise.then((data)=>{
+            this.resolvePromise(port, guid, data);
         })
-        .fail(function(data){
-            self.rejectPromise(port, guid, data);
+        .catch((data)=>{
+            this.rejectPromise(port, guid, data);
         });
     }
 

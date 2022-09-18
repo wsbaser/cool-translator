@@ -9,7 +9,7 @@ export default class DictionaryProvider {
     getCards(requestData) {		
         let cardPromises = {};
         let promise = this.requestTranslationsData(requestData);
-        $.each(this.config.contentTypes, function(i, contentType) {
+        this.config.contentTypes.forEach((contentType) => {
             cardPromises[contentType] = promise;
         });
         return cardPromises;
@@ -17,13 +17,36 @@ export default class DictionaryProvider {
 
     handleErrors(response) {
         if (!response.ok) {
-            throw Error(response.statusText);
+            return Promise.reject(response)
         }
         return response;
     }
 
-    getRequest(url){
-        return fetch(url).then(handleErrors)
+    getJson(url){
+        return fetch(url,{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(this.handleErrors)
+        .then((response)=>response.json())
+    }
+
+    getHtml(url){
+        return fetch(url, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(this.handleErrors)
+        .then((response)=>response.text())
+    }
+
+    postRequest(url, body){
+        return fetch(url, {
+            method: 'POST',
+            body: body?JSON.stringify(body):''
+        }).then(this.handleErrors)
     }
 
     checkIfContentTypeSupported(contentType) {
@@ -52,20 +75,6 @@ export default class DictionaryProvider {
         }
     }
 
-    resolveWithJQueryElement(resolve, data, selector) {
-        let $element = $(data).find(selector);
-        $element.find('img').each(function(i, itemEl){
-            itemEl = $(itemEl);
-            let src = itemEl.attr('src');
-            if(src.startsWith('//')){
-                itemEl.attr('src', 'https:' + src);
-            }else if(src.startsWith('http')){
-                itemEl.attr('src', 'https' + src.slice(4));
-            }
-        });
-        resolve($element);
-    }
-
     formatRequestUrl(url, data) {
         data = Object.create(data);
         let sourceLang = this.config.languages[data.sourceLang];
@@ -75,25 +84,8 @@ export default class DictionaryProvider {
         return StringHelper.format(url, data);
     }
 
-    requestPage(urlTemplate, requestData, responseSelector) {
-        return new Promise((resolve, reject)=>{
-            let translateUrl = this.formatRequestUrl(urlTemplate, requestData);
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', translateUrl, true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState != 4) return;
-                if (xhr.status != 200) {
-                    this.rejectWithStatusCode(reject, xhr);
-                } else {
-                    this.resolveWithJQueryElement(resolve, xhr.responseText, responseSelector);
-                }
-            }    
-        })
-    }
-
-    getRequestName(contentType) {
-        throw new Error('Not implemented');
+    requestPage(urlTemplate, requestData) {
+        let translateUrl = this.formatRequestUrl(urlTemplate, requestData);
+        return this.getHtml(translateUrl)
     }
 }

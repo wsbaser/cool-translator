@@ -51,8 +51,8 @@ const EXAMPLE_ITEM =
     '</div>';
 
 export default class GoogleService extends DictionaryService {
-    constructor(provider) {
-        super(provider);
+    constructor(config, connection) {
+        super(config, connection);
         this.cacheResponseData = true;
         this.singleCacheObject = true;
     }

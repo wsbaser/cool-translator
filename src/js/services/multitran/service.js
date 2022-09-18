@@ -5,8 +5,8 @@ import ContentTypes from '../common/content-types';
 import SpeachParts from '../common/speach-parts';
 
 export default class MultitranService extends DictionaryService {
-    constructor(provider){
-        super(provider);
+    constructor(config, connection){
+        super(config, connection);
     }
     
     removeExpandIcon(el) {
@@ -14,7 +14,8 @@ export default class MultitranService extends DictionaryService {
         el.find('.expand_i').remove();
     }
 
-    generateTranslationsCard(contentEl) {
+    generateTranslationsCard(html) {
+        const contentEl = this.getRootEl(html, '#translation+div+div+table')
         let $lines = contentEl.find('tr');
         if ($lines.length) {
             let translationsFragment = document.createDocumentFragment();

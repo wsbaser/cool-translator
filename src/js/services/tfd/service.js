@@ -5,11 +5,12 @@ import ContentTypes from '../common/content-types';
 import SpeachParts from '../common/speach-parts';
 
 export default class TfdService extends DictionaryService {
-    constructor(provider){
-        super(provider);
+    constructor(config, connection){
+        super(config, connection);
     }
     
-    generatePrompts(contentType, contentEl) {
+    generatePrompts(contentType, html) {
+        const contentEl = this.getRootEl(html, '#MainTxt')
         if (contentEl.text().indexOf('Word not found') != -1) {
             this._configureNoResultsWarning(contentEl);
             return contentEl.outerHTML();
@@ -37,30 +38,31 @@ export default class TfdService extends DictionaryService {
         });
     }
 
-    generateThesaurusCard(contentEl) {
+    generateThesaurusCard(html) {
+        const contentEl = this.getRootEl(html, '#MainTxt')
         let thesaurusEl = contentEl.find('#Thesaurus');
         this.deactivateLinks(thesaurusEl, 'a');
         this.addTranslateContentEvent(thesaurusEl, 'a');
         return thesaurusEl.outerHTML();
     }
 
-    generateDefinitionsCard(contentEl) {
-        let self = this;
+    generateDefinitionsCard(html) {
+        const contentEl = this.getRootEl(html, '#MainTxt')
         let definitionEl = $(contentEl.find('#Definition').outerHTML());
         this.deactivateLinks(definitionEl, 'a');
         this.addTranslateContentEvent(definitionEl, 'a');
         // . configure pronunciation click event
-        definitionEl.find('.pron').each(function(i, pronEl) {
+        definitionEl.find('.pron').each((i, pronEl) => {
             pronEl = $(pronEl);
             let onclickValue = pronEl.attr('onclick');
             pronEl.removeAttr('onclick');
             let matchGroups = /pron_key\((\d*)\)/.exec(onclickValue);
             if (matchGroups)
                 this.addEventData(pronEl, 'click', 'tfdHandlers.pron_key', matchGroups[1])
-        }.bind(this));
+        });
 
         let verbtableSectionElems = this._getVerbTableSections(definitionEl);
-        verbtableSectionElems.forEach(function(sectionEl) {
+        verbtableSectionElems.forEach((sectionEl) => {
             sectionEl.remove();
         });
 
@@ -70,7 +72,7 @@ export default class TfdService extends DictionaryService {
     _getVerbTableSections(contentEl) {
         // . collect verb tables and remove them from content
         let verbtableSectionElems = [];
-        $.each(contentEl.find('section'), function(i, sectionEl) {
+        $.each(contentEl.find('section'), (i, sectionEl) => {
             sectionEl = $(sectionEl);
             if (sectionEl.attr('data-src') &&
                 sectionEl.attr('data-src').indexOf('VerbTbl') != -1) {
@@ -80,7 +82,8 @@ export default class TfdService extends DictionaryService {
         return verbtableSectionElems;
     }
 
-    generateVerbtableCard(contentEl) {
+    generateVerbtableCard(html) {
+        const contentEl = this.getRootEl(html, '#MainTxt')
         let verbtableSectionElems = this._getVerbTableSections(contentEl);
 
         // . move verb tables to its own block
@@ -92,11 +95,11 @@ export default class TfdService extends DictionaryService {
                 verbTablesEl.append(verbtableSectionElems[i]);
 
             // . configure verb table
-            $.each(verbTablesEl.find('.verbtables'), function(i, verbtableEl) {
+            $.each(verbTablesEl.find('.verbtables'), (i, verbtableEl) => {
                 verbtableEl = $(verbtableEl);
                 verbtableEl.removeAttr('onchange');
                 this.addEventData(verbtableEl, 'change', 'tfdHandlers.SelectVT', 'this');
-            }.bind(this));
+            });
 
             return verbTablesEl.outerHTML();
         } else

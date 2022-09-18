@@ -13,9 +13,9 @@ export default class GoogleProvider extends DictionaryProvider{
             let detectUrl = StringHelper.format(this.config.ajax.detectLanguage, {
                 word: word
             });
-            this.getRequest(detectUrl).then(function(data) {
+            this.getJson(detectUrl).then((data)=>{
                 resolve(this.getDetectedLanguages(data));
-            }).catch(function(jqXHR) {
+            }).catch((jqXHR)=>{
                 this.rejectWithStatusCode(reject, jqXHR);
             });
         })
@@ -106,15 +106,14 @@ export default class GoogleProvider extends DictionaryProvider{
     requestTranslationsData(requestData) {
         return new Promise((resolve, reject)=>{
             let translateUrl = this.formatRequestUrl(this.config.ajax.translate, requestData);
-            console.log(translateUrl);
-            this.getRequest.then(function(data) {
+            this.getJson(translateUrl).then((data)=>{
                 try {
                     resolve(this.processTranslationsResponse(data));
                 } catch (e) {
                     reject(e.message);
                 }
-            }).catch(function(jqXHR) {
-                this.rejectWithStatusCode(reject, jqXHR);
+            }).catch((response)=>{
+                this.rejectWithStatusCode(reject, response);
             });    
         })
     }

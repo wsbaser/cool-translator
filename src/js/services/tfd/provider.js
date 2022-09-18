@@ -8,6 +8,6 @@ export default class TfdProvider extends DictionaryProvider {
 	}
 	
 	requestTranslationsData(requestData) {
-		return this.requestPage(this.config.ajax.translate, requestData, '#MainTxt');
+		return this.requestPage(this.config.ajax.translate, requestData);
 	}
 }

@@ -1,6 +1,5 @@
 'use strict';
 
-import AbbyConfig from '../services/abby/config';
 import GoogleConfig from '../services/google/config';
 import LingueeConfig from '../services/linguee/config';
 import LLConfig from '../services/ll/config';
@@ -9,7 +8,6 @@ import TFDConfig from '../services/tfd/config';
 import FCConfig from '../services/fc/config';
 import CVConfig from '../services/cv/config';
 
-import AbbyProvider from '../services/abby/provider';
 import GoogleProvider from '../services/google/provider';
 import LingueeProvider from '../services/linguee/provider';
 import LLProvider from '../services/ll/provider';
@@ -23,10 +21,6 @@ import CvService from '../services/cv/service';
 export default class ServiceProvider{
 	get ll(){
 		return this._ll||(this._ll = new LLProvider(LLConfig));
-	}
-
-	get abby(){
-		return this._abby||(this._abby = new AbbyProvider(AbbyConfig));
 	}
 
 	get google(){
@@ -50,7 +44,7 @@ export default class ServiceProvider{
 	}
 
 	get dictionaryServices(){
-		return [this.ll, this.abby, this.google, this.tfd, this.linguee, this.multitran, this.fc];
+		return [this.ll, this.google, this.tfd, this.linguee, this.multitran, this.fc];
 	}
 
 	// get cv(){

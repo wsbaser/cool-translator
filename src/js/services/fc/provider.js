@@ -8,6 +8,6 @@ export default class FCProvider extends DictionaryProvider {
 	}
 	
 	requestTranslationsData(requestData) {
-		return this.requestPage(this.config.ajax.translate, requestData, '#leftnav');
+		return this.requestPage(this.config.ajax.translate, requestData);
 	}
 }

@@ -1,6 +1,5 @@
 'use strict';
 
-import AbbyConfig from '../services/abby/config';
 import GoogleConfig from '../services/google/config';
 import LingueeConfig from '../services/linguee/config';
 import LLConfig from '../services/ll/config';
@@ -9,8 +8,6 @@ import TFDConfig from '../services/tfd/config';
 import FCConfig from '../services/fc/config';
 import CVConfig from '../services/cv/config';
 
-
-import AbbyServie from '../services/abby/service';
 import GoogleService from '../services/google/service';
 import LingueeService from '../services/linguee/service';
 import LLService from '../services/ll/service';
@@ -44,17 +41,6 @@ export default class ServiceProvider {
     let addTranslation = null;// this._createAddTranslation(vocabulary, '.trans>a');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     let service = new MultitranService(MultitranConfig, connection);
-    return new Source(service, tabs);
-  }
-
-  _createAbbySource(connection, vocabulary) {
-    let tabs = [];
-    let serviceConfig = AbbyConfig;
-    let addTranslation = null; //this._createAddTranslation(vocabulary, '.l-article__showExamp');
-    tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
-    tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));
-    tabs.push(new SourceTab(serviceConfig.id, ContentTypes.PHRASES));
-    let service = new AbbyServie(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -140,7 +126,6 @@ export default class ServiceProvider {
       let vocabulary = this.getVocabulary();
       let arr =
         [ this._createLLSource(connection, vocabulary),
-          this._createAbbySource(connection, vocabulary),
           this._createGoogleSource(connection, vocabulary),
           this._createLingueeSource(connection, vocabulary),
           this._createTfdSource(connection),

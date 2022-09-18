@@ -32,8 +32,8 @@ const CARD_TEMPLATE =
 </div>';
 
 export default class LLService extends DictionaryService {
-    constructor(provider) {
-        super(provider);
+    constructor(config, connection) {
+        super(config, connection);
         this.cacheResponseData = true;
     }
 
@@ -55,7 +55,7 @@ export default class LLService extends DictionaryService {
                 translations = translations.slice(0, 5);
 
             items = $.map(translations, function(item) {
-                let linkMarker = chrome.extension.getURL('assets/images/ll/marker.png');
+                let linkMarker = chrome.runtime.getURL('assets/images/ll/marker.png');
                 let indexAttr = ' ind="' + (ind++) + '" ';
                 return '<div class="ll-translation-item" ' + indexAttr + '><div class="ll-translation-text" ' + indexAttr + '><img class="ll-translation-marker" src="' + linkMarker + '"/><a href="javascript:void 0" ' + indexAttr + ' >' + item.value + '</a></div><div class="ll-translation-counter">' + item.votes + '</div></div>';
             });
@@ -92,7 +92,7 @@ export default class LLService extends DictionaryService {
             soundUrl: response.sound_url || '',
             soundHint: 'Listen',
             hasPic: !!response.pic_url,
-            picUrl: response.pic_url ? response.pic_url.replace('http','https') : chrome.extension.getURL('assets/images/ll/blank.gif'),
+            picUrl: response.pic_url ? response.pic_url.replace('http','https') : chrome.runtime.getURL('assets/images/ll/blank.gif'),
             context: null,
             wordLink: inDict ? this.config.domain + templatesHelper.formatStr(this.config.path.wordArticle, {
                 originalWord: originalWord.toLocaleLowerCase()
@@ -172,7 +172,7 @@ export default class LLService extends DictionaryService {
         if (responseData && responseData.translate) {
             let translations = {};
             translations[SpeachParts.UNKNOWN] = [];
-            $.each(responseData.translate, function(i, translation) {
+            responseData.translate.forEach((i, translation) => {
                 translations[SpeachParts.UNKNOWN].push(translation.value);
             });
             result[inputData.word] = translations;

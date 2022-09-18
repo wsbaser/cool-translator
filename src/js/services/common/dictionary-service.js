@@ -2,14 +2,6 @@
 import StringHelper from 'string-helper';
 
 export default class DictionaryService {
-	// constructor(provider) {
-	// 	this.config = provider.config;
-	// 	this.provider = provider;
-	// 	this.requestCache = {};
-	// 	this.cacheResponseData = false;
-	// 	this.singleCacheObject = false;
-	// }
-
 	constructor(config, connection){
 	    this.config = config;
 	    this.connection = connection;
@@ -25,10 +17,10 @@ export default class DictionaryService {
 	getCards(requestData, callback){
     	this.makeCall('getCards', [requestData], function(cardPromises) {
 			const callbackPromises={}
-            $.each(cardPromises, function(contentType, promise) {
+            $.each(cardPromises, (contentType, promise)=>{
 				let deferred = $.Deferred();
                 callbackPromises[contentType] = deferred.promise();
-                promise.done(function(data){
+                promise.done((data)=>{
 						var card = this.generateCard(contentType, data);
 						this.saveToCache(requestData, contentType, this.cacheResponseData ? data : card);
 						deferred.resolve({
@@ -38,13 +30,13 @@ export default class DictionaryService {
 							metadata: this.getMetadata(requestData)
 						});
                     })
-                    .fail(function(error) {
+                    .fail((error)=>{
 						deferred.reject({
 							inputData: requestData,
 							error: error
 						});
                     });
-            }.bind(this));
+            });
 			callback(callbackPromises)
         }.bind(this));
 	}
@@ -66,6 +58,20 @@ export default class DictionaryService {
 	saveToCache(requestData, contentType, card) {
 		var requestHash = this.getCardHash(requestData, contentType);
 		this.requestCache[requestHash] = card;
+	}
+
+	getRootEl(html, rootSelector){
+		const rootEl = $(html).find(rootSelector)
+		rootEl.find('img').each(function(i, itemEl){
+            itemEl = $(itemEl);
+            let src = itemEl.attr('src');
+            if(src.startsWith('//')){
+                itemEl.attr('src', 'https:' + src);
+            }else if(src.startsWith('http')){
+                itemEl.attr('src', 'https' + src.slice(4));
+            }
+        });
+		return rootEl;
 	}
 
 	generateCard(contentType, data) {
