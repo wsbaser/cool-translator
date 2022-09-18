@@ -6,15 +6,15 @@ import MessageTypes from '../message-types';
 export default class ExtensionContentServer{
     _loadLangPair(){
         let langPair = null;
-        if (localStorage.langPair){
-            try{
-                let obj = JSON.parse(localStorage.langPair)
-                if(obj.sourceLang && obj.targetLang)
-                    langPair = obj;
-            }
-            catch(e){
-            }
-        }
+        // if (localStorage.langPair){
+        //     try{
+        //         let obj = JSON.parse(localStorage.langPair)
+        //         if(obj.sourceLang && obj.targetLang)
+        //             langPair = obj;
+        //     }
+        //     catch(e){
+        //     }
+        // }
         return langPair ||
             {
                 sourceLang: chrome.i18n.getUILanguage()==='en'?'es':'en',
@@ -23,7 +23,7 @@ export default class ExtensionContentServer{
     }
 
     _saveLangPair(langPair){
-        localStorage.langPair = JSON.stringify(langPair);
+        // localStorage.langPair = JSON.stringify(langPair);
     }
 
     _onMessage(message, sender, callback){

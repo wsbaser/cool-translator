@@ -18,14 +18,7 @@ import TFDProvider from '../services/tfd/provider';
 import FCProvider from '../services/fc/provider';
 import CVProvider from '../services/cv/provider';
 
-import AbbyService from '../services/abby/service';
-import GoogleService from '../services/google/service';
-import LingueeService from '../services/linguee/service';
-import LLService from '../services/ll/service';
-import MultitranService from '../services/multitran/service';
-import TFDService from '../services/tfd/service';
-import FCService from '../services/fc/service';
-import CVService from '../services/cv/service';
+import CvService from '../services/cv/service';
 
 export default class ServiceProvider{
 	get ll(){
@@ -49,22 +42,22 @@ export default class ServiceProvider{
 	}
 
 	get multitran(){
-		return this._multitran ||(this._multitran = new MultitranService(new MultitranProvider(MultitranConfig)));
+		return this._multitran ||(this._multitran = new MultitranProvider(MultitranConfig));
 	}
 
 	get fc(){
-		return this._fc ||(this._fc = new FCService(new FCProvider(FCConfig)));
+		return this._fc ||(this._fc = new FCProvider(FCConfig));
 	}
 
 	get dictionaryServices(){
 		return [this.ll, this.abby, this.google, this.tfd, this.linguee, this.multitran, this.fc];
 	}
 
-	get cv(){
-		return this._cv ||(this._cv = new CVService(new CVProvider(CVConfig), this.dictionaryServices));
-	}
+	// get cv(){
+	// 	return this._cv ||(this._cv = new CvService(new CVProvider(CVConfig), this.dictionaryServices));
+	// }
 
 	get all(){
-		return this.dictionaryServices.concat([this.cv]);
+		return this.dictionaryServices //.concat([this.cv]);
 	}
 }

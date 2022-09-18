@@ -13,14 +13,14 @@ export default class CTBackground{
         this.servicesServer = ServicesServer.create(this.serviceProvider.all);
         this.extensionContentServer = new ExtensionContentServer();
         this.extensionExternalServer = new ExtensionExternalServer(this.serviceProvider);
-        this.popupManager = new PopupManager(this.serviceProvider);
+        // this.popupManager = new PopupManager(this.serviceProvider);
     }
 
     run(){
         this.servicesServer.listen();
         this.extensionContentServer.listen();
         this.extensionExternalServer.listen();
-        this.popupManager.init();
-        this.serviceProvider.cv.checkAuthentication();
+        // this.popupManager.init();
+        // this.serviceProvider.cv.checkAuthentication();
     }
 }

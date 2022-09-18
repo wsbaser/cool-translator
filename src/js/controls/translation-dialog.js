@@ -396,7 +396,7 @@ export default class TranslationDialog {
   }
 
   show(word) {
-    this.vocabulary.checkAuthentication();
+    // this.vocabulary.checkAuthentication();
     if (!this.isActive) {
       this.el.removeClass('ctr-hide');
       this.el.addClass('ctr-show');

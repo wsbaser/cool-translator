@@ -6,33 +6,53 @@ export default class DictionaryProvider {
         this.config = config;
     }
 
+    getCards(requestData) {		
+        let cardPromises = {};
+        let promise = this.requestTranslationsData(requestData);
+        $.each(this.config.contentTypes, function(i, contentType) {
+            cardPromises[contentType] = promise;
+        });
+        return cardPromises;
+	}
+
+    handleErrors(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response;
+    }
+
+    getRequest(url){
+        return fetch(url).then(handleErrors)
+    }
+
     checkIfContentTypeSupported(contentType) {
         if (this.config.contentTypes.indexOf(contentType) === -1)
             throw new Error("Content type " + contentType + ' not supported.');
     }
 
-    rejectWithStatusCode(deferred, xhr) {
+    rejectWithStatusCode(reject, xhr) {
         let statusText = xhr.statusText || 'error';
-        deferred.reject(statusText + '. Status(' + xhr.status + ')');
+        reject(statusText + '. Status(' + xhr.status + ')');
     }
 
-    rejectWithResponseText(deferred, xhr) {
+    rejectWithResponseText(reject, xhr) {
         switch (xhr.status) {
             case 500:
             case 0:
-                this.rejectWithStatusCode(deferred, xhr);
+                this.rejectWithStatusCode(reject, xhr);
                 break;
             default:
                 if(xhr.responseText){
-                    deferred.reject(xhr.responseText);
+                    reject(xhr.responseText);
                 }else{
-                    this.rejectWithStatusCode(deferred, xhr);
+                    this.rejectWithStatusCode(reject, xhr);
                 }
                 break;
         }
     }
 
-    resolveWithJQueryElement(deferred, data, selector) {
+    resolveWithJQueryElement(resolve, data, selector) {
         let $element = $(data).find(selector);
         $element.find('img').each(function(i, itemEl){
             itemEl = $(itemEl);
@@ -43,7 +63,7 @@ export default class DictionaryProvider {
                 itemEl.attr('src', 'https' + src.slice(4));
             }
         });
-        deferred.resolve($element);
+        resolve($element);
     }
 
     formatRequestUrl(url, data) {
@@ -56,35 +76,24 @@ export default class DictionaryProvider {
     }
 
     requestPage(urlTemplate, requestData, responseSelector) {
-        let self = this;
-        let deferred = $.Deferred();
-        let translateUrl = this.formatRequestUrl(urlTemplate, requestData);
-        console.log(translateUrl);
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', translateUrl, true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState != 4) return;
-            if (xhr.status != 200) {
-                self.rejectWithStatusCode(deferred, xhr);
-            } else {
-                self.resolveWithJQueryElement(deferred, xhr.responseText, responseSelector);
-            }
-        }
-        return deferred.promise();
+        return new Promise((resolve, reject)=>{
+            let translateUrl = this.formatRequestUrl(urlTemplate, requestData);
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', translateUrl, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != 4) return;
+                if (xhr.status != 200) {
+                    this.rejectWithStatusCode(reject, xhr);
+                } else {
+                    this.resolveWithJQueryElement(resolve, xhr.responseText, responseSelector);
+                }
+            }    
+        })
     }
 
     getRequestName(contentType) {
         throw new Error('Not implemented');
-    }
-
-    getTranslationsData(requestData) {
-        let cards = {};
-        let deferred = this.requestTranslationsData(requestData);
-        $.each(this.config.contentTypes, function(i, contentType) {
-            cards[contentType] = deferred;
-        });
-        return cards;
     }
 }

@@ -27,6 +27,9 @@
     "matches": [ "https://www.netflix.com/*" ],
     "run_at": "document_end"
   }],
+  "background": {
+    "service_worker": "assets/background.js"
+  },
   "host_permissions": ["<all_urls>"],
   "web_accessible_resources": [
     {

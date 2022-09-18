@@ -9,17 +9,16 @@ export default class GoogleProvider extends DictionaryProvider{
     }
     
     detectLanguage(word) {
-        let self = this;
-        let detectUrl = StringHelper.format(this.config.ajax.detectLanguage, {
-            word: word
-        });
-        let deferred = $.Deferred();
-        $.get(detectUrl).done(function(data) {
-            deferred.resolve(self.getDetectedLanguages(data));
-        }).fail(function(jqXHR) {
-            self.rejectWithStatusCode(deferred, jqXHR);
-        });
-        return deferred.promise();
+        return new Promise((resolve, reject)=>{
+            let detectUrl = StringHelper.format(this.config.ajax.detectLanguage, {
+                word: word
+            });
+            this.getRequest(detectUrl).then(function(data) {
+                resolve(this.getDetectedLanguages(data));
+            }).catch(function(jqXHR) {
+                this.rejectWithStatusCode(reject, jqXHR);
+            });
+        })
     }
 
     getDetectedLanguages(data) {
@@ -72,7 +71,7 @@ export default class GoogleProvider extends DictionaryProvider{
             let definitions = response.definitions || [];
             for (let i = definitions.length - 1; i >= 0; i--) {
                 let sp = definitions[i].pos;
-                let definitionsArr = $.map(definitions[i].entry, function(item) {
+                let definitionsArr = definitions[i].entry.map(function(item) {
                     return {
                         definition: item.gloss,
                         example: item.example
@@ -92,7 +91,7 @@ export default class GoogleProvider extends DictionaryProvider{
         try {
             let examples = response.examples && response.examples.example ?
                 response.examples.example : [];
-            jsonObject.examples = $.map(examples, function(item) {
+            jsonObject.examples = examples.map(function(item) {
                 return item.text;
             }).filter(function(item) {
                 return item && item.length > 10;
@@ -105,20 +104,19 @@ export default class GoogleProvider extends DictionaryProvider{
     }
 
     requestTranslationsData(requestData) {
-        let self = this;
-        let deferred = $.Deferred();
-        let translateUrl = this.formatRequestUrl(this.config.ajax.translate, requestData);
-        console.log(translateUrl);
-        $.get(translateUrl).done(function(data) {
-            try {
-                deferred.resolve(self.processTranslationsResponse(data));
-            } catch (e) {
-                deferred.reject(e.message);
-            }
-        }).fail(function(jqXHR) {
-            self.rejectWithStatusCode(deferred, jqXHR);
-        });
-        return deferred.promise();
+        return new Promise((resolve, reject)=>{
+            let translateUrl = this.formatRequestUrl(this.config.ajax.translate, requestData);
+            console.log(translateUrl);
+            this.getRequest.then(function(data) {
+                try {
+                    resolve(this.processTranslationsResponse(data));
+                } catch (e) {
+                    reject(e.message);
+                }
+            }).catch(function(jqXHR) {
+                this.rejectWithStatusCode(reject, jqXHR);
+            });    
+        })
     }
 }
 

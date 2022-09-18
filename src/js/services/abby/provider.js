@@ -20,7 +20,7 @@ export default class AbbyProvider extends DictionaryProvider{
 	    return this.requestPage(this.config.ajax.phrases, requestData, '.l-phrases__tblphrase');
 	}
 
-	getTranslationsData(requestData){
+	getCards(requestData){
 	    var requests = {};
 	    requests[ContentTypes.TRANSLATIONS] = this.requestTranslations(requestData);
 	    requests[ContentTypes.EXAMPLES] = this.requestExamples(requestData);

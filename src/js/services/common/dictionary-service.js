@@ -23,7 +23,30 @@ export default class DictionaryService {
 	}
 
 	getCards(requestData, callback){
-    	this.makeCall('getCards', [requestData], callback);
+    	this.makeCall('getCards', [requestData], function(cardPromises) {
+			const callbackPromises={}
+            $.each(cardPromises, function(contentType, promise) {
+				let deferred = $.Deferred();
+                callbackPromises[contentType] = deferred.promise();
+                promise.done(function(data){
+						var card = this.generateCard(contentType, data);
+						this.saveToCache(requestData, contentType, this.cacheResponseData ? data : card);
+						deferred.resolve({
+							inputData: requestData,
+							cards: card,
+							prompts: this.generatePrompts(contentType, data),
+							metadata: this.getMetadata(requestData)
+						});
+                    })
+                    .fail(function(error) {
+						deferred.reject({
+							inputData: requestData,
+							error: error
+						});
+                    });
+            }.bind(this));
+			callback(callbackPromises)
+        }.bind(this));
 	}
 
 	getCardHash(requestData, contentType) {
@@ -79,34 +102,6 @@ export default class DictionaryService {
 			});
 			return cards;
 		}
-	}
-
-	getCards(requestData) {
-		var self = this;
-		var dataPromises = this.provider.getTranslationsData(requestData);
-		var cards = {};
-		$.each(dataPromises, function(contentType, dataPromise) {
-			var deferred = $.Deferred();
-			cards[contentType] = deferred;
-			dataPromise.done(function(data) {
-					var card = self.generateCard(contentType, data);
-					var cachedData = self.cacheResponseData ? data : card;
-					self.saveToCache(requestData, contentType, cachedData);
-					deferred.resolve({
-						inputData: requestData,
-						cards: card,
-						prompts: self.generatePrompts(contentType, data),
-						metadata: self.getMetadata(requestData)
-					});
-				})
-				.fail(function(error) {
-					deferred.reject({
-						inputData: requestData,
-						error: error
-					});
-				});
-		});
-		return cards;
 	}
 
 	/* HELPERS */
