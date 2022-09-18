@@ -29,23 +29,23 @@ import CVService from '../services/cv/service';
 
 export default class ServiceProvider{
 	get ll(){
-		return this._ll||(this._ll = new LLService(new LLProvider(LLConfig)));
+		return this._ll||(this._ll = new LLProvider(LLConfig));
 	}
 
 	get abby(){
-		return this._abby||(this._abby = new AbbyService(new AbbyProvider(AbbyConfig)));
+		return this._abby||(this._abby = new AbbyProvider(AbbyConfig));
 	}
 
 	get google(){
-		return this._google||(this._google = new GoogleService(new GoogleProvider(GoogleConfig)));
+		return this._google||(this._google = new GoogleProvider(GoogleConfig));
 	}
 
 	get linguee(){
-		return this._linguee || (this._linguee = new LingueeService(new LingueeProvider(LingueeConfig)));
+		return this._linguee || (this._linguee = new LingueeProvider(LingueeConfig));
 	}
 
 	get tfd(){
-		return this._tfd || (this._tfd = new TFDService(new TFDProvider(TFDConfig)));
+		return this._tfd || (this._tfd = new TFDProvider(TFDConfig));
 	}
 
 	get multitran(){

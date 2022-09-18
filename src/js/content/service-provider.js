@@ -8,6 +8,17 @@ import MultitranConfig from '../services/multitran/config';
 import TFDConfig from '../services/tfd/config';
 import FCConfig from '../services/fc/config';
 import CVConfig from '../services/cv/config';
+
+
+import AbbyServie from '../services/abby/service';
+import GoogleService from '../services/google/service';
+import LingueeService from '../services/linguee/service';
+import LLService from '../services/ll/service';
+import MultitranService from '../services/multitran/service';
+import TFDService from '../services/tfd/service';
+import FCService from '../services/fc/service';
+
+
 import ServicesConnection from '../services/services-connection';
 import Vocabulary from '../services/vocabulary';
 import LangDetector from '../services/lang-detector';
@@ -32,7 +43,7 @@ export default class ServiceProvider {
     let serviceConfig = MultitranConfig;
     let addTranslation = null;// this._createAddTranslation(vocabulary, '.trans>a');
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new MultitranService(MultitranConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -43,7 +54,7 @@ export default class ServiceProvider {
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.PHRASES));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new AbbyServie(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -54,7 +65,7 @@ export default class ServiceProvider {
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.DEFINITIONS));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new GoogleService(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -65,7 +76,7 @@ export default class ServiceProvider {
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
     // tabs.push(new SourceTab(serviceConfig.id, ContentTypes.EXAMPLES));  
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.PHRASES));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new LingueeService(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -75,7 +86,7 @@ export default class ServiceProvider {
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.THESAURUS));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.DEFINITIONS));
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.VERBTABLE));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new TFDService(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -83,7 +94,7 @@ export default class ServiceProvider {
     let tabs = [];
     let serviceConfig = FCConfig;
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.COLLOCATIONS));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new FCService(serviceConfig, connection);
     return new Source(service, tabs);
   }
 
@@ -92,7 +103,7 @@ export default class ServiceProvider {
     let serviceConfig = LLConfig;
     let addTranslation = null; // this._createAddTranslation(vocabulary, '.ll-translation-item', '.ll-translation-text');    
     tabs.push(new SourceTab(serviceConfig.id, ContentTypes.TRANSLATIONS, addTranslation));
-    let service = new DictionaryServiceProxy(serviceConfig, connection);
+    let service = new LLService(serviceConfig, connection);
     return new Source(service, tabs);
   }
 

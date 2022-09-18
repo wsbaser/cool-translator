@@ -2,12 +2,28 @@
 import StringHelper from 'string-helper';
 
 export default class DictionaryService {
-	constructor(provider) {
-		this.config = provider.config;
-		this.provider = provider;
+	// constructor(provider) {
+	// 	this.config = provider.config;
+	// 	this.provider = provider;
+	// 	this.requestCache = {};
+	// 	this.cacheResponseData = false;
+	// 	this.singleCacheObject = false;
+	// }
+
+	constructor(config, connection){
+	    this.config = config;
+	    this.connection = connection;
 		this.requestCache = {};
 		this.cacheResponseData = false;
 		this.singleCacheObject = false;
+	}
+
+	makeCall(method, params, callback){
+		this.connection.makeRequest(this.config.id, method, params, callback);
+	}
+
+	getCards(requestData, callback){
+    	this.makeCall('getCards', [requestData], callback);
 	}
 
 	getCardHash(requestData, contentType) {
