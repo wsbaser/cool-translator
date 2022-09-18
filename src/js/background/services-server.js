@@ -1,6 +1,7 @@
 'use strict';
 
 import guid from 'guid';
+import $ from "jquery"
 
 const CONNECTION_NAME = "services_connection";
 

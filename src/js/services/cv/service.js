@@ -3,6 +3,7 @@
 import DECalculator from './de-calculator';
 import Reactor from 'reactor';
 import SpeachParts from '../common/speach-parts';
+import $ from "jquery"
 
 export default class CVService {
     constructor(provider, services) {

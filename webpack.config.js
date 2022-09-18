@@ -11,7 +11,7 @@ console.log('EXTENSION_ID: '+ EXTENSION_ID);
 
 module.exports = {
   mode: 'development',
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   context: path.resolve(__dirname, "./src"),
   entry: {
     background: "./js/background",

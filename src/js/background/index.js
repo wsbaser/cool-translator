@@ -3,12 +3,12 @@
 import CTBackground from './ct-background';
 import guid from 'guid';
 import injectJQueryPlugins from 'jquery-plugins';
+console.log($)
+//injectJQueryPlugins();
 
-injectJQueryPlugins();
+// $.ajaxSetup({
+//     headers: {"X-Requested-With":"XMLHttpRequest"}
+// });
 
-$.ajaxSetup({
-    headers: {"X-Requested-With":"XMLHttpRequest"}
-});
-
-window.ctBackground = new CTBackground();
-window.ctBackground.run();
+const ctBackground = new CTBackground();
+ctBackground.run();
