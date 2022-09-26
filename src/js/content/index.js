@@ -17,9 +17,6 @@ import CommonHandlers from '../services/common/handlers';
 import injectJQueryPlugins from 'jquery-plugins';
 
 injectJQueryPlugins();
-fetch("https://example.com").then((result)=>{
-    console.log(result)
-})
 
 window.lingueeHandlers = new LingueeHandlers();
 window.llHandlers = new LLHandlers();

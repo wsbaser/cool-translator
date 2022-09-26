@@ -10,7 +10,7 @@ export default {
     languages: {
         en: {
             id: 'en',
-            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru']
         }
     },
     priority: 8,

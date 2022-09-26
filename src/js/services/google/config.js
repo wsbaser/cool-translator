@@ -9,32 +9,26 @@ export default {
     name: "Google Translator",
     languages: {
         en: {
-            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru']
         },
         es: {
-            targets: ['en', 'pt', 'fr', 'it', 'de', 'ru', 'pl']
+            targets: ['en', 'pt', 'fr', 'it', 'de', 'ru']
         },
         pt: {
-            targets: ['en', 'es', 'fr', 'it', 'de', 'ru', 'pl']
+            targets: ['en', 'es', 'fr', 'it', 'de', 'ru']
         },
         fr: {
-            targets: ['en', 'es', 'pt', 'it', 'de', 'ru', 'pl']
+            targets: ['en', 'es', 'pt', 'it', 'de', 'ru']
         },
         it: {
-            targets: ['en', 'es', 'pt', 'fr', 'de', 'ru', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'de', 'ru']
         },
         de: {
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'ru', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'it', 'ru']
         },
         ru: {
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'de', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'it', 'de']
         },
-        ar: {
-            targets: ['en']
-        },
-        pl: {
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'de', 'ru']
-        }
     },
     priority: 100,
     domain: "https://translate.google.com",

@@ -15,8 +15,8 @@ export default class GoogleProvider extends DictionaryProvider{
             });
             this.getJson(detectUrl).then((data)=>{
                 resolve(this.getDetectedLanguages(data));
-            }).catch((jqXHR)=>{
-                this.rejectWithStatusCode(reject, jqXHR);
+            }).catch((error)=>{
+                reject(error)
             });
         })
     }
@@ -112,8 +112,8 @@ export default class GoogleProvider extends DictionaryProvider{
                 } catch (e) {
                     reject(e.message);
                 }
-            }).catch((response)=>{
-                this.rejectWithStatusCode(reject, response);
+            }).catch((error)=>{
+                reject(error)
             });    
         })
     }

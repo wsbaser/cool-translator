@@ -10,27 +10,27 @@ export default {
     languages: {
         en: {
             id: 'english',
-            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru', 'pl']
+            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru']
         },
         es: {
             id: 'spanish',
-            targets: ['en', 'pt', 'fr', 'it', 'de', 'pl']
+            targets: ['en', 'pt', 'fr', 'it', 'de']
         },
         pt: {
             id: 'portuguese',
-            targets: ['en', 'es', 'fr', 'it', 'de', 'pl']
+            targets: ['en', 'es', 'fr', 'it', 'de']
         },
         fr: {
             id: 'french',
-            targets: ['en', 'es', 'pt', 'it', 'de', 'pl']
+            targets: ['en', 'es', 'pt', 'it', 'de']
         },
         it: {
             id: 'italian',
-            targets: ['en', 'es', 'pt', 'fr', 'de', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'de']
         },
         de: {
             id: 'german',
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'it']
         },
         ru: {
             id: 'russian',

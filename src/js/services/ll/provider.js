@@ -34,8 +34,8 @@ export default class LLProvider extends DictionaryProvider {
                             inDictionary: null //result.is_user, //todo: fix this later
                         });
                     }
-                }).catch(function(jqXHR) {
-                    this.rejectWithStatusCode(deferred, jqXHR);
+                }).catch(function(error) {
+                    reject(error)
                 });
             }
         })
@@ -61,8 +61,8 @@ export default class LLProvider extends DictionaryProvider {
                 } else{
                     resolve(data);
                 }
-            }).catch(function(jqXHR) {
-                this.rejectWithStatusCode(reject, jqXHR);
+            }).catch(function(error) {
+                reject(error)
             });    
         })
     }
@@ -91,8 +91,8 @@ export default class LLProvider extends DictionaryProvider {
                 else{
                     resolve(data);
                 }
-            }).catch(function(jqXHR) {
-                this.rejectWithStatusCode(reject, jqXHR);
+            }).catch(function(error) {
+                reject(error)
             });    
         })
     }

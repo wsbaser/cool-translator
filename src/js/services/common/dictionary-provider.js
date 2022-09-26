@@ -54,27 +54,6 @@ export default class DictionaryProvider {
             throw new Error("Content type " + contentType + ' not supported.');
     }
 
-    rejectWithStatusCode(reject, xhr) {
-        let statusText = xhr.statusText || 'error';
-        reject(statusText + '. Status(' + xhr.status + ')');
-    }
-
-    rejectWithResponseText(reject, xhr) {
-        switch (xhr.status) {
-            case 500:
-            case 0:
-                this.rejectWithStatusCode(reject, xhr);
-                break;
-            default:
-                if(xhr.responseText){
-                    reject(xhr.responseText);
-                }else{
-                    this.rejectWithStatusCode(reject, xhr);
-                }
-                break;
-        }
-    }
-
     formatRequestUrl(url, data) {
         data = Object.create(data);
         let sourceLang = this.config.languages[data.sourceLang];

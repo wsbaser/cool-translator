@@ -363,8 +363,7 @@ export default class TranslationDialog {
   _setLangDirection() {
     if (this.inputEl) {
       let langPair = this.getLangPair();
-      let RTL_LANGUAGES = ['ar'];
-      let dir = RTL_LANGUAGES.indexOf(langPair.sourceLang) !== -1 ? 'rtl' : 'ltr';
+      let RTL_LANGUAGES = [];
       if (RTL_LANGUAGES.indexOf(langPair.sourceLang) !== -1) {
         this.inputEl.addClass('rtl');
       } else {

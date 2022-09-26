@@ -10,39 +10,31 @@ export default {
     languages: {
         en: {
             id: 'en',
-            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['es', 'pt', 'fr', 'it', 'de', 'ru']
         },
         es: {
             id: 'es',
-            targets: ['en', 'pt', 'fr', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['en', 'pt', 'fr', 'it', 'de', 'ru']
         },
         pt: {
             id: 'pt',
-            targets: ['en', 'es', 'fr', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['en', 'es', 'fr', 'it', 'de', 'ru']
         },
         fr: {
             id: 'fr',
-            targets: ['en', 'es', 'pt', 'it', 'de', 'ru', 'ar', 'pl']
+            targets: ['en', 'es', 'pt', 'it', 'de', 'ru']
         },
         it: {
             id: 'it',
-            targets: ['en', 'es', 'pt', 'fr', 'de', 'ru', 'ar', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'de', 'ru']
         },
         de: {
             id: 'de',
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'ru', 'ar', 'pl']
+            targets: ['en', 'es', 'pt', 'fr', 'it', 'ru']
         },
         ru: {
             id: 'ru',
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'de', 'ar', 'pl']
-        },
-        ar: {
-            id: 'ar',
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'de', 'ru', 'pl']
-        },
-        pl: {
-            id: 'pl',
-            targets: ['en', 'es', 'pt', 'fr', 'it', 'de', 'ru', 'ar']
+            targets: ['en', 'es', 'pt', 'fr', 'it', 'de']
         }
     },
     priority: 7,
