@@ -11,8 +11,20 @@ export default class ServicesConnection{
   }
 
   open(){
-    this.port = chrome.runtime.connect({
-      name: this.name
+    try{
+      this.port = chrome.runtime.connect({
+        name: this.name
+      });
+    }catch(e){
+      console.log("Cool Translator is unable to connect to service worker.", e);
+      setTimeout(connectToBackgroundPage, 1000);
+      return;
+    }
+    console.log("Cool Translator has created a connection to service worker.");
+    this.port.onDisconnect.addListener(function(){
+      console.log("Connection to service worker from Cool Translator has broken.");
+      this.port = null
+      setTimeout(this.open.bind(this), 1000);
     });
     this.port.onMessage.addListener(this.listener.bind(this));
   }
