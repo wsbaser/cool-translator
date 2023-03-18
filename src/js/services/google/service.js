@@ -120,7 +120,7 @@ export default class GoogleService extends DictionaryService {
     }
 
     generateExamplesCard(data) {
-        if (data && data.examples.length > 0) {
+        if (data && data.examples && data.examples.length > 0) {
             let examplesListHtml = $.map(data.examples, function(example) {
                 return StringHelper.format(EXAMPLE_ITEM, {
                     example: example
