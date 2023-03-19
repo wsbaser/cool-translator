@@ -27,7 +27,7 @@ const TEMPLATE =
         </div>\
         <form id="ctr_wordInputForm">\
             <div id="sourceLangSelector"></div>\
-            <input type="text" id="ctr_wordInput" maxlength="255" value="" placeholder="Type word for translation" class="ctr-input">\
+            <input type="text" id="ctr_wordInput" maxlength="255" value="" placeholder="Type word for translation" autocomplete="off" class="ctr-input">\
             <div id="wordMetadata"></div>\
             <div id="targetLangSelector"></div>\
         </form>\
