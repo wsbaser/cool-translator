@@ -30,7 +30,7 @@ export default {
             targets: ['en', 'es', 'pt', 'fr', 'it', 'de']
         },
     },
-    priority: 100,
+    priority: 18,
     domain: "https://translate.google.com",
     path: {
         templatesDir: rootDir

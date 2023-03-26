@@ -41,7 +41,7 @@ export default {
             targets: ['en']            
         }
     },
-    priority: 18,
+    priority: 100,
     domain: "https://linguee.com",
     path: {
         templatesDir: rootDir
